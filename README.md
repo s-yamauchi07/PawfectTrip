@@ -95,7 +95,7 @@ Things you may want to cover:
 ## tags table 
 |Column                |Type    |Options                           |
 |----------------------|------------|------------------------------|
-|tag_name              |string      |null: false, uniqueness: true |
+|tag_name              |string      |null: false, unique:true      |
 
 ### Association
 - has_many :plans 
