@@ -42,6 +42,7 @@ Things you may want to cover:
 ## pets table
 |Column                |Type        |Options                        |
 |----------------------|------------|-------------------------------|
+|name                  |string      |null: false                    |
 |breed                 |string      |null: false                    |
 |size_id               |integer     |null: false                    |
 |birthday              |date        |                               |
@@ -95,7 +96,7 @@ Things you may want to cover:
 ## tags table 
 |Column                |Type    |Options                           |
 |----------------------|------------|------------------------------|
-|tag_name              |string      |null: false, unique:true      |
+|tag_name              |string      |null: false, unique:true |
 
 ### Association
 - has_many :plans 
