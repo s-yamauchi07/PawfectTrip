@@ -7,5 +7,5 @@ class Pet < ApplicationRecord
     validates :birthday
   end
 
-  validates :size_id, numericality: { other_than: 0 }
+  validates :size_id, numericality: { other_than: 1 }
 end
