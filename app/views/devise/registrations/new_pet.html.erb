@@ -1,0 +1,32 @@
+<h2>わんこ登録</h2>
+
+<%= form_with model:@pet, local: true do |f| %>
+  <%= render "devise/shared/error_messages", resource: @pet %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :breed %><br />
+    <%= f.text_field :breed %>
+  </div>
+
+  <div class="field">
+    <%= f.label :size_id %><br />
+    <%= f.collection_radio_buttons(:size_id, Size.all, :id, :name) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :birthday %><br />
+    <%= f.date_field :birthday %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+
+<% end %>
+
+<%= render "devise/shared/links" %>
