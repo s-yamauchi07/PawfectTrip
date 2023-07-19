@@ -16,9 +16,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     @user = User.new(sign_up_params)
-      unless @user.valid?
-        render :new, status: :unporcessable_entity and return
-      end
+    unless @user.valid?
+      render :new, status: :unprocessable_entity and return
+    end
     session["devise.regist_data"] = {user: @user.attributes}
     session["devise.regist_data"][:user]["password"] = params[:user][:password]
     @pet = @user.pets.build
@@ -27,9 +27,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create_pet
     @user = User.new(session["devise.regist_data"]["user"])
+    binding.pry
     @pet = Pet.new(pet_params)
       unless @pet.valid?
-        render :new_pet, status: :unporcessable_entity and return
+        render :new_pet, status: :unprocessable_entity and return
       end
     @user.pets.build(@pet.attributes)
     @user.save
