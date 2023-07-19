@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   has_many :pets
          
-  validates :nickname, presence:true
+  validates :nickname, presence:true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ーa-zA-Z0-9]+\z/} 
   
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
   validates :password, format: {with: VALID_PASSWORD_REGEX, message: "must contain both letters and at least one number."}
