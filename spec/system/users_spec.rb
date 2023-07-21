@@ -3,56 +3,100 @@ require 'rails_helper'
 RSpec.describe "ユーザー新規登録", type: :system do
   before do
     @user = FactoryBot.build(:user)
+    @pet = FactoryBot.build(:pet)
   end
 
   context 'ユーザー新規登録できる時' do
-    it '正しい情報を入力すれば、ペット情報入力ページに遷移できる' do
-    #トップページに移動する
-    visit root_path
-    #トップページに「新規登録」ボタンが存在する
-    expect(page).to have_content('新規登録')
-    
-    #サインアップページに遷移する
-    visit new_user_registration_path
-    
-    #ユーザー情報を入力する
-    fill_in 'user_nickname', with: @user.nickname
-    fill_in 'user_email', with: @user.email
-    fill_in 'user_password', with: @user.password
-    fill_in 'user_password_confirmation', with: @user.password_confirmation
-    
-    # Nextボタンを押下するとペット情報入力フォームに遷移する
-    click_button 'Next'
-    expect(current_path).to eq(new_user_registration_path)
+    it '正しい情報を入力すれば、トップページに遷移できる' do
+      #トップページに移動する
+      visit root_path
+      #トップページに「新規登録」ボタンが存在する
+      expect(page).to have_content('新規登録')
+      
+      #サインアップページに遷移する
+      visit new_user_registration_path
+      
+      #ユーザー情報を入力する
+      fill_in 'user_nickname', with: @user.nickname
+      fill_in 'user_email', with: @user.email
+      fill_in 'user_password', with: @user.password
+      fill_in 'user_password_confirmation', with: @user.password_confirmation
+      
+      # Nextボタンを押下するとペット情報入力フォームに遷移する
+      find('input[name="commit"]').click
+      expect(page).to have_current_path(user_registration_path)
 
-    # 遷移先で「わんこ登録」の文字が存在することを確認する
-    expect(page).to have_content('わんこ登録')
+      # 遷移先で「わんこ登録」の文字が存在することを確認する
+      expect(page).to have_content('わんこ登録')
+
+      # ペット情報を入力する
+      fill_in 'pet_name', with: @pet.name
+      fill_in 'pet_breed', with: @pet.breed
+      choose "pet_size_id_1"
+      fill_in 'pet_birthday', with: @pet.birthday
+      
+      # サインアップボタンをクリックすると、トップページに遷移する
+      find('input[name="commit"]').click
+      expect(page).to have_current_path(root_path)
     end
   end
 
   context 'ユーザー新規登録できないとき' do
-    it '情報が不足している場合は、新規登録ページにリダイレクトされる' do
-    #トップページに移動する
-    visit root_path
+    it 'ユーザー情報が不足している場合は、新規登録ページにリダイレクトされる' do
+      #トップページに移動する
+      visit root_path
 
-    #トップページに「新規登録」ボタンが存在する
-    expect(page).to have_content('新規登録')
+      #トップページに「新規登録」ボタンが存在する
+      expect(page).to have_content('新規登録')
 
-    #サインアップページに遷移する
-    visit new_user_registration_path
+      #サインアップページに遷移する
+      visit new_user_registration_path
 
-    #ユーザー情報を入力する
-    fill_in 'user_nickname', with: ""
-    fill_in 'user_email', with: ""
-    fill_in 'user_password', with: ""
-    fill_in 'user_password_confirmation', with: ""
+      #ユーザー情報を入力する
+      fill_in 'user_nickname', with: ""
+      fill_in 'user_email', with: ""
+      fill_in 'user_password', with: ""
+      fill_in 'user_password_confirmation', with: ""
 
-    # Nextボタンを押下するとユーザー新規登録ページに遷移する
-    click_button 'Next'
-    expect(current_path).to eq(new_user_registration_path)
+      # Nextボタンを押下するとユーザー新規登録ページに遷移する
+      click_button 'Next'
+      expect(page).to have_current_path(new_user_registration_path)
 
-    # リダイレクトページで「ユーザー登録」の文字が存在することを確認する
-    expect(page).to have_content('ユーザー登録')
+      # リダイレクトページで「ユーザー登録」の文字が存在することを確認する
+      expect(page).to have_content('ユーザー登録')
+    end
+
+    it 'ペット情報が不足している場合は、ペット登録ページにリダイレクトされる' do
+      #トップページに移動する
+      visit root_path
+
+      #トップページに「新規登録」ボタンが存在する
+      expect(page).to have_content('新規登録')
+
+      #サインアップページに遷移する
+      visit new_user_registration_path
+
+      #ユーザー情報を入力する
+      fill_in 'user_nickname', with: @user.nickname
+      fill_in 'user_email', with: @user.email
+      fill_in 'user_password', with: @user.password
+      fill_in 'user_password_confirmation', with: @user.password_confirmation
+
+      # Nextボタンを押下するとペット情報入力フォームに遷移する
+      find('input[name="commit"]').click
+      expect(page).to have_current_path(user_registration_path)
+
+      # 遷移先で「わんこ登録」の文字が存在することを確認する
+      expect(page).to have_content('わんこ登録')
+
+      # ペット情報を入力する
+      fill_in 'pet_name', with: ""
+      fill_in 'pet_breed', with: ""
+      fill_in 'pet_birthday', with: ""
+      
+      # サインアップボタンをクリックすると、ペット登録ページに遷移する
+      find('input[name="commit"]').click
+      expect(page).to have_current_path(user_registration_path)
     end
   end
 end
@@ -74,14 +118,15 @@ RSpec.describe "ログイン", type: :system do
       visit new_user_session_path
 
       # 正しいユーザー情報を入力する
+
       fill_in 'user_email', with: @user.email
       fill_in 'user_password', with: @user.password
       
       # ログインボタンを押す
       find('input[name="commit"]').click
-      
+
       # トップページへ遷移することを確認する
-      expect(current_path).to eq(root_path)
+      expect(page).to have_current_path(root_path)
 
       # ログアウトボタンがあることを確認する
       expect(page).to have_content('ログアウト')
@@ -110,7 +155,7 @@ RSpec.describe "ログイン", type: :system do
       click_button 'Log in'
 
       # ログインページへ戻されることを確認する
-      expect(current_path).to eq(user_session_path)
+      expect(page).to have_current_path(user_session_path)
     end
   end
 end
