@@ -27,7 +27,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create_pet
     @user = User.new(session["devise.regist_data"]["user"])
-    binding.pry
     @pet = Pet.new(pet_params)
       unless @pet.valid?
         render :new_pet, status: :unprocessable_entity and return
