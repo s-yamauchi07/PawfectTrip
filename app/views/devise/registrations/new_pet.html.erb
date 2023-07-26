@@ -1,38 +1,49 @@
-<h2>わんこ登録</h2>
+<div class="container flex items-center justify-center h-screen">
 
-  <%= form_with model:@pet, class:"pet_info", local: true do |f| %>
-    <%= render "devise/shared/error_messages", resource: @pet %>
+  <div class="card bg-blue-50 p-6 shadow-xl">
+    <h2 class="mb-6 text-2xl">わんこ登録</h2>
+    <%= form_with model:@pet, class:"pet_info", local: true do |f| %>
+      <%= render "devise/shared/error_messages", resource: @pet %>
 
-  <div data-controller="add-form">
-    <div class="field" data-add-form-target="name">
-      <%= f.label :name %><br />
-      <%= f.text_field :name %><br />
-    </div>
+      <div class="form-control w-full max-w-xs mb-4">
+        <label class="label">
+          <span class="label-text">お名前</span>
+          <span class="label-text-alt">必須</span>
+        </label>
+        <%= f.text_field :name, autofocus: true, placeholder:"pochi",class:"input input-bordered w-full max-w-xs"%>
+      </div>
 
-    <div class="field" data-add-form-target="breed">
-      <%= f.label :breed %><br />
-      <%= f.text_field :breed %><br />
-    </div>
+      <div class="form-control w-full max-w-xs mb-4">
+        <label class="label">
+          <span class="label-text">犬種</span>
+          <span class="label-text-alt">必須</span>
+        </label>
+        <%= f.text_field :breed, autofocus: true, placeholder:"shiba",class:"input input-bordered w-full max-w-xs"%>
+      </div>
 
-    <div class="field" data-add-form-target="size">
-      <%= f.label :size_id %><br />
-      <%= f.collection_radio_buttons(:size_id, Size.all, :id, :name) %><br />
-    </div>
+      <div class="form-control w-full max-w-xs mb-4">
+        <label class="label">
+          <span class="label-text">サイズ</span>
+          <span class="label-text-alt">必須</span>
+        </label>
+        <div class="flex">
+          <%= f.collection_radio_buttons(:size_id, Size.all, :id, :name, { class:"radio radio-secondary" })%><br />
+        </div>
+      </div>
 
-    <div class="field" data-add-form-target="birthday">
-      <%= f.label :birthday %><br />
-      <%= f.date_field :birthday %><br />
-    </div>
+      <div class="form-control w-full max-w-xs mb-4">
+        <label class="label">
+          <span class="label-text">誕生日</span>
+          <span class="label-text-alt">必須</span>
+        </label>
+        <%= f.date_field :birthday, autofocus: true,class:"input input-bordered w-full max-w-xs"%>
+      </div>
 
+      <div class="actions mt-4">
+        <%= f.submit "Sign up", class:"btn btn-accent" %>
+      </div>
 
-    <div data-add-form-target ="output"></div>
-    <%#= link_to "Add", "javascript:void(0)", data: { action: "click->add-form#addForm" } %>
+      <%= render "devise/shared/links" %>
+    <% end %>
   </div>
-
-    <div class="actions">
-      <%= f.submit "Sign up" %>
-    </div>
-
-  <% end %>
-
-<%= render "devise/shared/links" %>
+</div>

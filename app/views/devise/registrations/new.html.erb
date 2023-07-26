@@ -1,34 +1,47 @@
-<h2>ユーザー登録</h2>
+<div class="container flex items-center justify-center h-screen">
 
-<%= form_with model: @user,  url: user_registration_path, local: true do |f| %>
-  <%= render "devise/shared/error_messages", resource: @user %>
+  <div class="card bg-blue-50 p-6 shadow-xl">
+    <%= form_with model: @user,  url: user_registration_path, local: true do |f| %>
+      <h2 class="mb-6 text-2xl">ユーザー登録</h2>
+      <%= render "devise/shared/error_messages", resource: @user %>
 
-  <div class="field">
-    <%= f.label :nickname %><br />
-    <%= f.text_field :nickname, autofocus: true %>
+      <div class="form-control w-full max-w-xs mb-4">
+        <label class="label">
+          <span class="label-text">ニックネーム</span>
+          <span class="label-text-alt">必須</span>
+        </label>
+        <%= f.text_field :nickname, autofocus: true, placeholder:"taro",class:"input input-bordered w-full max-w-xs"%>
+      </div>
+
+      <div class="form-control w-full max-w-xs mb-4">
+        <label class="label">
+          <span class="label-text">Email</span>
+          <span class="label-text-alt">必須</span>
+        </label>
+        <%= f.email_field :email, autofocus: true, placeholder:"test@test.com",class:"input input-bordered w-full max-w-xs"%>
+      </div>
+
+      <div class="form-control w-full max-w-xs mb-4">
+        <label class="label">
+          <span class="label-text">Password</span>
+          <span class="label-text-alt">必須</span>
+        </label>
+        <%= f.password_field :password, autofocus: true, placeholder:"password",class:"input input-bordered w-full max-w-xs"%>
+      </div>
+
+      <div class="form-control w-full max-w-xs mb-4">
+        <label class="label">
+          <span class="label-text">Password_confirmation</span>
+          <span class="label-text-alt">必須</span>
+        </label>
+        <%= f.password_field :password_confirmation, autofocus: true, placeholder:"Type here",class:"input input-bordered w-full max-w-xs"%>
+      </div>
+
+      <div class="actions mt-4">
+        <%= f.submit "Next", class:"btn btn-accent"%>
+      </div>
+    <% end %>
+    <%= render "devise/shared/links" %>
   </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true%>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Next" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
