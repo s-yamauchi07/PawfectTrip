@@ -10,7 +10,11 @@ RSpec.describe "ユーザー新規登録", type: :system do
     it '正しい情報を入力すれば、トップページに遷移できる' do
       #トップページに移動する
       visit root_path
-      #トップページに「新規登録」ボタンが存在する
+
+      #メニューアイコンをクリックする
+      find('.header-icon').click
+
+      #トップページに「新規登録」の文字が確認できる。
       expect(page).to have_content('新規登録')
       
       #サインアップページに遷移する
@@ -46,6 +50,9 @@ RSpec.describe "ユーザー新規登録", type: :system do
       #トップページに移動する
       visit root_path
 
+      #メニューアイコンをクリックする
+      find('.header-icon').click
+
       #トップページに「新規登録」ボタンが存在する
       expect(page).to have_content('新規登録')
 
@@ -69,6 +76,9 @@ RSpec.describe "ユーザー新規登録", type: :system do
     it 'ペット情報が不足している場合は、ペット登録ページにリダイレクトされる' do
       #トップページに移動する
       visit root_path
+
+      #メニューアイコンをクリックする
+      find('.header-icon').click
 
       #トップページに「新規登録」ボタンが存在する
       expect(page).to have_content('新規登録')
@@ -111,6 +121,9 @@ RSpec.describe "ログイン", type: :system do
       # トップページに移動する
       visit root_path
 
+      #メニューアイコンをクリックする
+      find('.header-icon').click
+
       # トップページにログインページへ遷移するボタンがあることを確認する
       expect(page).to have_content('ログイン')
 
@@ -128,6 +141,9 @@ RSpec.describe "ログイン", type: :system do
       # トップページへ遷移することを確認する
       expect(page).to have_current_path(root_path)
 
+      #メニューアイコンをクリックする
+      find('.header-icon').click
+
       # ログアウトボタンがあることを確認する
       expect(page).to have_content('ログアウト')
 
@@ -141,6 +157,9 @@ RSpec.describe "ログイン", type: :system do
       # トップページに移動する
       visit root_path
 
+      #メニューアイコンをクリックする
+      find('.header-icon').click
+
       # トップページにログインページへ遷移するボタンがあることを確認する
       expect(page).to have_content('ログイン')
 
@@ -152,7 +171,7 @@ RSpec.describe "ログイン", type: :system do
       fill_in 'user_password', with: ''
 
       # ログインボタンを押す
-      click_button 'Log in'
+      click_button 'LogIn'
 
       # ログインページへ戻されることを確認する
       expect(page).to have_current_path(user_session_path)
