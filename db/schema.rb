@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_02_022136) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_02_070414) do
+  create_table "itineraries", charset: "utf8", force: :cascade do |t|
+    t.datetime "date", null: false
+    t.string "place", null: false
+    t.integer "transportation_id", null: false
+    t.text "memo"
+    t.bigint "plan_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plan_id"], name: "index_itineraries_on_plan_id"
+  end
+
   create_table "pets", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "breed", null: false
@@ -51,5 +62,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_02_022136) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "itineraries", "plans"
   add_foreign_key "pets", "users"
 end
