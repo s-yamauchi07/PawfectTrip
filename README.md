@@ -57,12 +57,11 @@ Things you may want to cover:
 |----------------------|------------|------------------------------|
 |title                 |string      |null: false                   |
 |departure_date        |datetime     |null: false                   |
-|destination_date      |datetime    |null: false                   |
+|return_date           |datetime    |null: false                   |
 |departure_id          |integer     |null: false                   |
 |destination_id        |integer     |null: false                   |
 |companion_id          |integer     |null: false                   |
 |dog                   |references  |null: false                   |
-|tag                   |references  |                              |
 |user                  |references  |null: false, foreign_key:true |
 
 ### Association
