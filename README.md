@@ -71,13 +71,13 @@ Things you may want to cover:
 - has_many :tags, through: :plan_tags
 
 # itineraries table
-|Column                |Type    |Options                          |
-|----------------------|------------|-----------------------------|
-|date                  |date        |null: false                  |
-|time                  |time        |null: false                  |
-|place                 |string      |null: false                  |
-|transportation_id     |integer     |null: false                  |
-|memo                  |text        |                             |
+|Column                |Type    |Options                           |
+|----------------------|------------|------------------------------|
+|date                  |datetime    |null: false                   |
+|place                 |string      |null: false                   |
+|transportation_id     |integer     |null: false                   |
+|memo                  |text        |                              |
+|plan                  |references  |null: false, foreign_key: true|
 
 ### Association
 - belongs_to :plan
