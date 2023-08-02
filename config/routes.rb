@@ -11,5 +11,7 @@ Rails.application.routes.draw do
     post 'pets', to: 'users/registrations#create_pet'
   end
 
-  resources :plans
+  resources :plans do
+    resources :itineraries, only:[:new, :create]
+  end
 end
