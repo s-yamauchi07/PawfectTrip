@@ -1,0 +1,39 @@
+<h1>工程表入力</h1>
+
+<%=form_with model:[@plan,@ininerary], local:true do |f| %>
+  <%= render "devise/shared/error_messages", resource: f.object %>
+
+  <div class="form-control w-full max-w-xs mb-4">
+    <label class="label">
+      <span class="label-text">日付</span>
+      <span class="label-text-alt">必須</span>
+    </label>
+    <%= f.datetime_field :date,class:"input input-bordered w-full max-w-xs"%>
+  </div>
+
+  <div class="form-control w-full max-w-xs mb-4">
+    <label class="label">
+      <span class="label-text">目的地</span>
+    </label>
+    <%= f.text_field :place,class:"input input-bordered w-full max-w-xs"%>
+  </div>
+
+  <div class="form-control w-full max-w-xs mb-4">
+    <label class="label">
+      <span class="label-text">移動手段</span>
+      <span class="label-text-alt">必須</span>
+    </label>
+    <%= f.collection_radio_buttons(:transportation_id, Transportation.all, :id, :name,{class:"input input-bordered w-full max-w-xs"})%>
+  </div>
+
+  <div class="form-control w-full max-w-xs mb-4">
+    <label class="label">
+      <span class="label-text">メモ</span>
+    </label>
+    <%= f.text_field :memo,class:"input input-bordered w-full max-w-xs"%>
+  </div>
+
+  <div class="actions mt-4">
+    <%= f.submit "Save", class:"btn btn-accent" %>
+  </div>
+<% end %>
