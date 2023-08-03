@@ -80,3 +80,4 @@ gem 'pry-rails'
 gem 'active_hash'
 
 gem 'tailwindcss-rails'
+gem "cocoon"
