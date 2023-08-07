@@ -58,6 +58,19 @@
       <%= f.collection_select(:dog_id, current_user.pets.order(:name), :id, :name, {prompt: ""}, {class:"input input-bordered w-full max-w-xs"}) %>
     </div>
 
+    <%= link_to_add_association '追加', f,:itineraries,
+      data: {
+        association_insertion_node: "#add_fields_area",
+        association_insertioin_method: "before"
+      }
+    %>
+
+    <%= f.fields_for :itineraries do | itinerary | %>
+      <%= render partial: "plans/itinerary_fields", locals: {f: itinerary} %>
+    <% end %>
+
+    <div id="add_fields_area"></div>
+
     <div class="actions mt-4">
       <%= f.submit "save", class:"btn btn-accent" %>
     </div>
