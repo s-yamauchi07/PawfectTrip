@@ -1,5 +1,8 @@
 class Plan < ApplicationRecord
   belongs_to :user
+  has_many :itineraries, dependent: :destroy
+  accepts_nested_attributes_for :itineraries, allow_destroy: true
+
 
   with_options presence: true do
     validates :title 
