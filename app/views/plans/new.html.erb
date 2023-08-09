@@ -2,7 +2,7 @@
 <%= form_with model:@plan, local:true do |f| %>
   <%= render "devise/shared/error_messages", resource: f.object %>
 
-    <div class="form-control w-full max-w-xs mb-4">
+    <div class="form-control w-full max-w-xs mb-2">
       <label class="label">
         <span class="label-text">タイトル</span>
         <span class="label-text-alt">必須</span>
@@ -10,23 +10,24 @@
       <%= f.text_field :title, autofocus: true, placeholder:"京都旅行",class:"input input-bordered w-full max-w-xs"%>
     </div>
 
-    <div class="form-control w-full max-w-xs mb-4">
-      <label class="label">
-        <span class="label-text">出発日</span>
-        <span class="label-text-alt">必須</span>
-      </label>
-      <%= f.date_field :departure_date, autofocus: true,class:"input input-bordered w-full max-w-xs"%>
+    <div class="trip-date flex">
+      <div class="form-control w-6/12 max-w-xs mb-2">
+        <label class="label">
+          <span class="label-text">出発日</span>
+          <span class="label-text-alt">必須</span>
+        </label>
+        <%= f.date_field :departure_date, autofocus: true,class:"input input-bordered w-full max-w-xs"%>
+      </div>
+      <div class="form-control w-6/12 max-w-xs mb-2">
+        <label class="label">
+          <span class="label-text">帰着日</span>
+          <span class="label-text-alt">必須</span>
+        </label>
+        <%= f.date_field :return_date, autofocus: true,class:"input input-bordered w-full max-w-xs"%>
+      </div>
     </div>
 
-    <div class="form-control w-full max-w-xs mb-4">
-      <label class="label">
-        <span class="label-text">帰着日</span>
-        <span class="label-text-alt">必須</span>
-      </label>
-      <%= f.date_field :return_date, autofocus: true,class:"input input-bordered w-full max-w-xs"%>
-    </div>
-
-    <div class="form-control w-full max-w-xs mb-4">
+    <div class="form-control w-full max-w-xs mb-2">
       <label class="label">
         <span class="label-text">出発地</span>
         <span class="label-text-alt">必須</span>
@@ -34,7 +35,7 @@
       <%= f.collection_select(:departure_id, Prefecture.all, :id, :name,{prompt: ""},{class:"input input-bordered w-full max-w-xs"})%>
     </div>
 
-    <div class="form-control w-full max-w-xs mb-4">
+    <div class="form-control w-full max-w-xs mb-2">
       <label class="label">
         <span class="label-text">目的地</span>
         <span class="label-text-alt">必須</span>
@@ -42,7 +43,7 @@
       <%= f.collection_select(:destination_id, Prefecture.all, :id, :name,{prompt: ""}, {class:"input input-bordered w-full max-w-xs"}) %>
     </div>
 
-    <div class="form-control w-full max-w-xs mb-4">
+    <div class="form-control w-full max-w-xs mb-2">
       <label class="label">
         <span class="label-text">同伴者</span>
         <span class="label-text-alt">必須</span>
@@ -50,7 +51,7 @@
       <%= f.collection_select(:companion_id, Companion.all, :id, :name,{prompt: ""}, {class:"input input-bordered w-full max-w-xs"}) %>
     </div>
 
-    <div class="form-control w-full max-w-xs mb-4">
+    <div class="form-control w-full max-w-xs mb-2">
       <label class="label">
         <span class="label-text">同行わんこ</span>
         <span class="label-text-alt">必須</span>
