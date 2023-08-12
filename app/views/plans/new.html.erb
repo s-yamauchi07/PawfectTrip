@@ -1,78 +1,82 @@
 <h1>旅行日程作成</h1>
-<%= form_with model:@plan, local:true do |f| %>
-  <%= render "devise/shared/error_messages", resource: f.object %>
+<div class="flex justify-center items-center">
+  <%= form_with(model:@plan, local:true) do |f| %>
+    <%= render "devise/shared/error_messages", resource: f.object %>
 
-    <div class="form-control w-full max-w-xs mb-2">
-      <label class="label">
-        <span class="label-text">タイトル</span>
-        <span class="label-text-alt">必須</span>
-      </label>
-      <%= f.text_field :title, autofocus: true, placeholder:"京都旅行",class:"input input-bordered w-full max-w-xs"%>
-    </div>
-
-    <div class="trip-date flex">
-      <div class="form-control w-6/12 max-w-xs mb-2">
+      <div class="form-control w-full max-w-xs mb-2">
         <label class="label">
-          <span class="label-text">出発日</span>
+          <span class="label-text">タイトル</span>
           <span class="label-text-alt">必須</span>
         </label>
-        <%= f.date_field :departure_date, autofocus: true,class:"input input-bordered w-full max-w-xs"%>
+        <%= f.text_field :title, autofocus: true, placeholder:"京都旅行",class:"input input-bordered w-full max-w-xs"%>
       </div>
-      <div class="form-control w-6/12 max-w-xs mb-2">
+
+      <div class="trip-date flex">
+        <div class="form-control w-6/12 max-w-xs mb-2">
+          <label class="label">
+            <span class="label-text">出発日</span>
+            <span class="label-text-alt">必須</span>
+          </label>
+          <%= f.date_field :departure_date, autofocus: true,class:"input input-bordered w-full max-w-xs"%>
+        </div>
+        <div class="form-control w-6/12 max-w-xs mb-2">
+          <label class="label">
+            <span class="label-text">帰着日</span>
+            <span class="label-text-alt">必須</span>
+          </label>
+          <%= f.date_field :return_date, autofocus: true,class:"input input-bordered w-full max-w-xs"%>
+        </div>
+      </div>
+
+      <div class="trip-area flex">
+        <div class="form-control w-full max-w-xs mb-2">
+          <label class="label">
+            <span class="label-text">出発地</span>
+            <span class="label-text-alt">必須</span>
+          </label>
+          <%= f.collection_select(:departure_id, Prefecture.all, :id, :name,{prompt: ""},{class:"input input-bordered w-full max-w-xs"})%>
+        </div>
+
+        <div class="form-control w-full max-w-xs mb-2">
+          <label class="label">
+            <span class="label-text">目的地</span>
+            <span class="label-text-alt">必須</span>
+          </label>
+          <%= f.collection_select(:destination_id, Prefecture.all, :id, :name,{prompt: ""}, {class:"input input-bordered w-full max-w-xs"}) %>
+        </div>
+      </div>
+
+      <div class="form-control w-full max-w-xs mb-2">
         <label class="label">
-          <span class="label-text">帰着日</span>
+          <span class="label-text">同伴者</span>
           <span class="label-text-alt">必須</span>
         </label>
-        <%= f.date_field :return_date, autofocus: true,class:"input input-bordered w-full max-w-xs"%>
+        <%= f.collection_select(:companion_id, Companion.all, :id, :name,{prompt: ""}, {class:"input input-bordered w-full max-w-xs"}) %>
       </div>
-    </div>
 
-    <div class="form-control w-full max-w-xs mb-2">
-      <label class="label">
-        <span class="label-text">出発地</span>
-        <span class="label-text-alt">必須</span>
-      </label>
-      <%= f.collection_select(:departure_id, Prefecture.all, :id, :name,{prompt: ""},{class:"input input-bordered w-full max-w-xs"})%>
-    </div>
+      <div class="w-full max-w-xs mb-2">
+        <label class="label cursor-pointer">
+          <span class="label-text">同行わんこ</span>
+          <span class="label-text-alt">必須</span>
+        </label>
+        <%= f.collection_radio_buttons(:dog_id, current_user.pets.order(:name), :id, :name, { checked: nil, include_hidden: false }) %>
+      </div>
 
-    <div class="form-control w-full max-w-xs mb-2">
-      <label class="label">
-        <span class="label-text">目的地</span>
-        <span class="label-text-alt">必須</span>
-      </label>
-      <%= f.collection_select(:destination_id, Prefecture.all, :id, :name,{prompt: ""}, {class:"input input-bordered w-full max-w-xs"}) %>
-    </div>
+      <%= link_to_add_association '追加', f,:itineraries,
+        data: {
+          association_insertion_node: "#add_fields_area",
+          association_insertioin_method: "before"
+        }
+      %>
 
-    <div class="form-control w-full max-w-xs mb-2">
-      <label class="label">
-        <span class="label-text">同伴者</span>
-        <span class="label-text-alt">必須</span>
-      </label>
-      <%= f.collection_select(:companion_id, Companion.all, :id, :name,{prompt: ""}, {class:"input input-bordered w-full max-w-xs"}) %>
-    </div>
+      <%= f.fields_for :itineraries do | itinerary | %>
+        <%= render partial: "plans/itinerary_fields", locals: {f: itinerary} %>
+      <% end %>
 
-    <div class="form-control w-full max-w-xs mb-2">
-      <label class="label">
-        <span class="label-text">同行わんこ</span>
-        <span class="label-text-alt">必須</span>
-      </label>
-      <%= f.collection_select(:dog_id, current_user.pets.order(:name), :id, :name, {prompt: ""}, {class:"input input-bordered w-full max-w-xs"}) %>
-    </div>
+      <div id="add_fields_area"></div>
 
-    <%= link_to_add_association '追加', f,:itineraries,
-      data: {
-        association_insertion_node: "#add_fields_area",
-        association_insertioin_method: "before"
-      }
-    %>
-
-    <%= f.fields_for :itineraries do | itinerary | %>
-      <%= render partial: "plans/itinerary_fields", locals: {f: itinerary} %>
-    <% end %>
-
-    <div id="add_fields_area"></div>
-
-    <div class="actions mt-4">
-      <%= f.submit "save", class:"btn btn-accent" %>
-    </div>
-<% end %>
+      <div class="actions mt-4">
+        <%= f.submit "保存", class:"btn btn-accent" %>
+      </div>
+  <% end %>
+</div>

@@ -1,15 +1,19 @@
-<div class="nested-fields">
-  <%= f.datetime_field :date %>
-  <%= f.text_field :place, placeholder:"目的地" %>
-  <%= f.text_field :memo, placeholder:"メモ" %>
+<div class="nested-fields border border-green-200">
+  <h2>行程入力</h2>
+  <%= f.datetime_field :date%>
+  <%= f.text_field :place, placeholder:"スポット名(例:東京駅)" %>
+  <%= f.text_field :memo, placeholder:"メモ(例:乗り換え5分)" %>
 
+  <h2>移動手段</h2>
   <div class="flex">
     <%= f.collection_radio_buttons(:transportation_id, Transportation.all, :id, :name) do |b| %>
       <% transportation = Transportation.find(b.value) %>
-        <label lass="flex flex-col items-center mr-4">
-          <%= image_tag transportation.image, class: "w-6 h-6 mr-2" %>
-          <%= b.radio_button(class: "hidden") %>
-          <%= b.label %>
+        <label class="block text-center p-2">
+            <div class= "rounded-full border border-blue-300 p-2">
+              <%= image_tag transportation.image, class:"w-8" %>
+            </div>
+            <%= b.radio_button(class: "hidden") %>
+          <%= b.label class:"text-xs"%>
         </label>
     <% end %>
   </div>
@@ -18,4 +22,6 @@
   <div>
     <%= link_to_remove_association '削除', f %>
   </div>
+
+
 </div>
