@@ -4,7 +4,6 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   click(e) {
     const btn = e.currentTarget
-    console.log(btn.hasAttribute("class") == "bg-blue-300")
     if (btn.classList.contains("bg-blue-300")) {
       btn.classList.remove("bg-blue-300")
     } else {

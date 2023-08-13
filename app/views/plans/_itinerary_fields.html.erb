@@ -1,8 +1,9 @@
-<div class="nested-fields border border-green-200">
+<div class="nested-fields border artboard artboard-horizontal phone-1 p-4">
   <h2>行程入力</h2>
-  <%= f.datetime_field :date%>
-  <%= f.text_field :place, placeholder:"スポット名(例:東京駅)" %>
-  <%= f.text_field :memo, placeholder:"メモ(例:乗り換え5分)" %>
+
+  <%= f.datetime_field :date, class:"input input-bordered w-6/12 input-sm max-w-xs"%>
+  <%= f.text_field :place, placeholder:"スポット名(例:東京駅)",class:"input input-bordered w-6/12 input-sm max-w-xs block" %>
+  <%= f.text_area :memo, placeholder:"メモ(例:乗り換え5分)",class:"textarea textarea-bordered" %>
 
   <h2>移動手段</h2>
   <div class="flex">
@@ -12,7 +13,6 @@
   
             <div
               class ="rounded-full border border-blue-300 p-2"
-              data-add-button-target = "transportation-icon"
               data-action="click->add-button#click">
                 <%= image_tag transportation.image, class:"w-8" %>
             </div>
@@ -23,7 +23,7 @@
   </div>
 
 
-  <div>
+  <div  class="text-right" >
     <%= link_to_remove_association '削除', f %>
   </div>
 
