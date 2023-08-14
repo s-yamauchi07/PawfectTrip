@@ -1,11 +1,13 @@
-<div class="nested-fields border artboard artboard-horizontal phone-1 p-4">
-  <h2>行程入力</h2>
+<div class="nested-fields border artboard artboard-horizontal phone-1 p-4 mb-4">
+  <h2 class="text-xl">行程入力</h2>
 
-  <%= f.datetime_field :date, class:"input input-bordered w-6/12 input-sm max-w-xs"%>
-  <%= f.text_field :place, placeholder:"スポット名(例:東京駅)",class:"input input-bordered w-6/12 input-sm max-w-xs block" %>
-  <%= f.text_area :memo, placeholder:"メモ(例:乗り換え5分)",class:"textarea textarea-bordered" %>
+  <div class="flex justify-between">
+    <%= f.datetime_field :date, class:"input input-bordered w-6/12 input-sm max-w-xs mr-2"%>
+    <%= f.text_field :place, placeholder:"スポット名(例:東京駅)",class:"input input-bordered w-6/12 input-sm max-w-xs block" %>
+  </div>
+  <%= f.text_area :memo, placeholder:"メモ(例:乗り換え5分)",class:"textarea textarea-bordered w-full mt-4" %>
 
-  <h2>移動手段</h2>
+  <h3>移動手段</h3>
   <div class="flex">
     <%= f.collection_radio_buttons(:transportation_id, Transportation.all, :id, :name) do |b| %>
       <% transportation = Transportation.find(b.value) %>

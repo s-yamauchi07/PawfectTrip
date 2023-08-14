@@ -61,21 +61,27 @@
         </label>
         <%= f.collection_radio_buttons(:dog_id, current_user.pets.order(:name), :id, :name, { checked: nil, include_hidden: false }) %>
       </div>
+      
+      <div id="add_fields_area"></div>
 
-      <%= link_to_add_association '追加', f,:itineraries,
-        data: {
-          association_insertion_node: "#add_fields_area",
-          association_insertioin_method: "before"
-        }
-      %>
+      <div class="text-right">
+        <div class="btn btn-warning btn-sm">
+          <%= link_to_add_association '＋行程追加', f,:itineraries,
+            data: {
+              association_insertion_node: "#add_fields_area",
+              association_insertioin_method: "before"
+            }
+          %>
+        </div>
+      </div>
 
       <%= f.fields_for :itineraries do | itinerary | %>
         <%= render partial: "plans/itinerary_fields", locals: {f: itinerary} %>
       <% end %>
 
-      <div id="add_fields_area"></div>
+      
 
-      <div class="actions mt-4">
+      <div class="actions mt-4 text-center">
         <%= f.submit "保存", class:"btn btn-accent" %>
       </div>
   <% end %>
