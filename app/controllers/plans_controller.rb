@@ -11,7 +11,7 @@ class PlansController < ApplicationController
   def create
     @plan = Plan.new(plan_params)
     if @plan.save
-      render :create, status: :unprocessable_entity
+      redirect_to root_path
     else
       render :new, status: :unprocessable_entity
     end
