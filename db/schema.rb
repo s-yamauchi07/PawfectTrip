@@ -50,7 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_15_153507) do
     t.integer "destination_id", null: false
     t.integer "companion_id", null: false
     t.bigint "dog_id", null: false
-    t.string "tag", null: false
+    t.string "tag"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

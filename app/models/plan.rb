@@ -19,4 +19,12 @@ class Plan < ApplicationRecord
     validates :dog_id
   end
 
+  def create_tags(tags)
+    tags.each do |tag|
+      new_tag = Tag.find_or_create_by(tag_name: tag)
+      ##Plan.tagsでplanに紐づくtagsテーブルのデータにnew_tagの情報を追加する。
+      self.tags << new_tag
+    end
+  end
+
 end

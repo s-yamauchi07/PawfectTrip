@@ -8,7 +8,7 @@ class CreatePlans < ActiveRecord::Migration[7.0]
       t.integer :destination_id,    null: false
       t.integer :companion_id,      null: false
       t.references :dog,            null: false
-      t.string :tag,                null: false
+      t.string :tag
       t.references :user,           null: false
       t.timestamps
     end
