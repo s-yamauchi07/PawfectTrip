@@ -5,6 +5,7 @@
     <%= f.datetime_field :date, class:"input input-bordered w-6/12 input-sm max-w-xs mr-2"%>
     <%= f.text_field :place, placeholder:"スポット名(例:東京駅)",class:"input input-bordered w-6/12 input-sm max-w-xs block" %>
   </div>
+
   <%= f.text_area :memo, placeholder:"メモ(例:乗り換え5分)",class:"textarea textarea-bordered w-full mt-4" %>
 
   <h3>移動手段</h3>
@@ -24,10 +25,8 @@
     <% end %>
   </div>
 
-
   <div  class="text-right" >
-    <%= link_to_remove_association '削除', f %>
+    <%= link_to_remove_association '削除', f, class:"btn btn-xs"%>
   </div>
-
 
 </div>
