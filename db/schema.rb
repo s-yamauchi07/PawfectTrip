@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_02_070414) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_15_153507) do
   create_table "itineraries", charset: "utf8", force: :cascade do |t|
     t.datetime "date", null: false
     t.string "place", null: false
@@ -33,6 +33,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_02_070414) do
     t.index ["user_id"], name: "index_pets_on_user_id"
   end
 
+  create_table "plan_tags", charset: "utf8", force: :cascade do |t|
+    t.bigint "plan_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plan_id"], name: "index_plan_tags_on_plan_id"
+    t.index ["tag_id"], name: "index_plan_tags_on_tag_id"
+  end
+
   create_table "plans", charset: "utf8", force: :cascade do |t|
     t.string "title", null: false
     t.datetime "departure_date", null: false
@@ -46,6 +55,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_02_070414) do
     t.datetime "updated_at", null: false
     t.index ["dog_id"], name: "index_plans_on_dog_id"
     t.index ["user_id"], name: "index_plans_on_user_id"
+  end
+
+  create_table "tags", charset: "utf8", force: :cascade do |t|
+    t.string "tag_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", charset: "utf8", force: :cascade do |t|
@@ -64,4 +79,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_02_070414) do
 
   add_foreign_key "itineraries", "plans"
   add_foreign_key "pets", "users"
+  add_foreign_key "plan_tags", "plans"
+  add_foreign_key "plan_tags", "tags"
 end
