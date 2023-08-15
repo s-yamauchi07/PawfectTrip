@@ -8,6 +8,9 @@ class Plan < ApplicationRecord
     validates :title 
     validates :departure_date
     validates :return_date
+  end
+  
+  with_options numericality: { other_than: 1, message: "must be selected"} do
     validates :departure_id
     validates :destination_id
     validates :companion_id
