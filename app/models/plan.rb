@@ -1,6 +1,8 @@
 class Plan < ApplicationRecord
   belongs_to :user
   has_many :itineraries, dependent: :destroy
+  has_many :plan_tags, dependent: :destroy
+  has_many :tags, through: :plan_tags
   accepts_nested_attributes_for :itineraries, allow_destroy: true
 
 
