@@ -5,5 +5,6 @@ class CreatePlanTags < ActiveRecord::Migration[7.0]
       t.references :tag, null: false, foreign_key: true
       t.timestamps
     end
+    add_index :plan_tags, [:plan_id, :tag_id], unique: true
   end
 end

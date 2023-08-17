@@ -10,7 +10,7 @@ class PlansController < ApplicationController
 
   def create
     @plan = Plan.new(plan_params)
-    tags = params[:plan][:tag_names].split
+    tags = params[:plan][:tag_names].split.uniq
     
     @plan.create_tags(tags)
     # binding.pry
