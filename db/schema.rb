@@ -38,6 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_15_153507) do
     t.bigint "tag_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["plan_id", "tag_id"], name: "index_plan_tags_on_plan_id_and_tag_id", unique: true
     t.index ["plan_id"], name: "index_plan_tags_on_plan_id"
     t.index ["tag_id"], name: "index_plan_tags_on_tag_id"
   end
