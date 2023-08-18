@@ -4,6 +4,7 @@ class Itinerary < ApplicationRecord
   with_options presence: true do
     validates :date
     validates :place
-    validates :transportation_id, numericality: { other_than: 1, message: "must be selected"}
   end
+
+  validates :transportation_id, numericality: { message: "must be selected"}
 end
