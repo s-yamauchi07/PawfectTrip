@@ -11,14 +11,15 @@ class Plan < ApplicationRecord
     validates :title 
     validates :departure_date
     validates :return_date
+    validates :dog_id
   end
   
   with_options numericality: { other_than:1, message: "must be selected"} do
     validates :departure_id
     validates :destination_id
     validates :companion_id
-    validates :dog_id
   end
+
 
   def create_tags(tags)
     tags.each do |tag|
