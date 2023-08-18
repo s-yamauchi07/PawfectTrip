@@ -78,12 +78,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_17_105501) do
     t.integer "departure_id", null: false
     t.integer "destination_id", null: false
     t.integer "companion_id", null: false
-    t.bigint "dog_id", null: false
+    t.bigint "pet_id", null: false
     t.string "tag"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["dog_id"], name: "index_plans_on_dog_id"
+    t.index ["pet_id"], name: "index_plans_on_pet_id"
     t.index ["user_id"], name: "index_plans_on_user_id"
   end
 
