@@ -35,7 +35,7 @@ Things you may want to cover:
 
 ### Association
 - has_many: plans
-- has_many: pets
+- has_one: pet
 - has_many: plan_favorites
 - has_many: place_favorites
 
@@ -61,11 +61,12 @@ Things you may want to cover:
 |departure_id          |integer     |null: false                   |
 |destination_id        |integer     |null: false                   |
 |companion_id          |integer     |null: false                   |
-|dog                   |references  |null: false, foreign_key:true |
+|pet                   |references  |null: false, foreign_key:true |
 |user                  |references  |null: false, foreign_key:true |
 
 ### Association
 - belongs_to :user
+- belongs_to :pet
 - has_many :plan_favorites
 - has_many :plan_tags 
 - has_many :tags, through: :plan_tags

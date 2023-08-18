@@ -1,5 +1,6 @@
 class Plan < ApplicationRecord
   belongs_to :user
+  belongs_to :pet
   has_many :itineraries, dependent: :destroy
   has_many :plan_tags, dependent: :destroy
   has_many :tags, through: :plan_tags
@@ -11,7 +12,6 @@ class Plan < ApplicationRecord
     validates :title 
     validates :departure_date
     validates :return_date
-    validates :dog_id
   end
   
   with_options numericality: { other_than:1, message: "must be selected"} do
