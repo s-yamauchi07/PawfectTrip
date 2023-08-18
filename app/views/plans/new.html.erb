@@ -68,7 +68,7 @@
             <span class="label-text font-semibold text-base">同行わんこ</span>
             <span class="label-text-alt bg-red-400 p-1 rounded-lg text-white">必須</span>
           </label>
-          <%= f.collection_radio_buttons(:dog_id, current_user.pets.order(:name), :id, :name, { checked: nil, include_hidden: false}, {class:"radio radio-primary"}) %>
+          <%= f.collection_radio_buttons(:pet_id, current_user.pets.order(:name), :id, :name, { checked: nil, include_hidden: false}, {class:"radio radio-primary"}) %>
         </div>
 
         <div class="form-control w-full mb-2">
