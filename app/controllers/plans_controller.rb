@@ -10,10 +10,10 @@ class PlansController < ApplicationController
 
   def create
     @plan = Plan.new(plan_params)
-    tags = params[:plan][:tag_names].split.uniq
-    
+    tags = params[:plan][:tag_names].split.uniq    
     @plan.create_tags(tags)
-    # binding.pry
+    @plan.check_image
+
     if @plan.save
       redirect_to root_path
     else
