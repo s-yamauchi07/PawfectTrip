@@ -6,7 +6,7 @@ FactoryBot.define do
     departure_id     { Faker::Number.within(range: 2..48)}
     destination_id   { Faker::Number.within(range: 2..48)}
     companion_id     { Faker::Number.within(range: 2..6)}
-    tag              { Faker::Lorem.words(number: 3)}
+    tag              { Faker::Lorem.words }
 
     association :pet
     association :user
