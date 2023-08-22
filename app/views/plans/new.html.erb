@@ -5,11 +5,12 @@
     <%= form_with(model:@plan, local:true, class:"artboard artboard-horizontal phone-1") do |f| %>
       <%= render "devise/shared/error_messages", resource: f.object %>
 
-        <div class="form-control w-full mb-2">
+        <div class="form-control w-full mb-2" data-controller="preview-image">
+          <div data-preview-image-target="image w-full"></div>
           <label class="label">
             <span class="label-text font-semibold text-base">表紙画像</span>
           </label>
-          <%= f.file_field :cover_image, autofocus: true, class:"file-input file-input-bordered file-input-primary w-full"%>
+          <%= f.file_field :cover_image, autofocus: true, class:"file-input file-input-bordered file-input-primary w-full", "data-action":"click->preview-image#preview", "data-preview-image-target":"file"%>
         </div>   
 
         <div class="form-control w-full mb-2">
