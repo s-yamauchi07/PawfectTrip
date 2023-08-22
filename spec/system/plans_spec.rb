@@ -5,33 +5,14 @@ RSpec.describe "Plans", type: :system do
     @user = FactoryBot.create(:user)
     @pet = FactoryBot.create(:pet, user_id: @user.id)
     @plan = FactoryBot.build(:plan)
-    @itinerary = FactoryBot.build(:itinerary)
+    @itinerary = FactoryBot.build(:itinerary, plan_id: @plan.id)
   end
 
   describe "旅行日程登録" do
     context '旅行日程の新規登録ができるとき' do
       it 'ログインしたユーザーは新規登録できる' do
-        # トップページに移動する
-        visit root_path
-  
-        #メニューアイコンをクリックする
-        find('.header-icon').click
-  
-        # トップページにログインページへ遷移するボタンがあることを確認する
-        expect(page).to have_content('ログイン')
-  
-        # ログインページへ遷移する
-        visit new_user_session_path
-  
-        # 正しいユーザー情報を入力する
-        fill_in 'user_email', with: @user.email
-        fill_in 'user_password', with: @user.password
-        
-        # ログインボタンを押す
-        find('input[name="commit"]').click
-  
-        # トップページへ遷移することを確認する
-        expect(page).to have_current_path(root_path)
+        #ログインする
+        sign_in(@user)
   
         #メニューアイコンをクリックする
         find('.header-icon').click
@@ -99,28 +80,9 @@ RSpec.describe "Plans", type: :system do
       end
 
       it '必須項目が空白の場合は、新規登録ができない' do
-        # トップページに移動する
-        visit root_path
-  
-        #メニューアイコンをクリックする
-        find('.header-icon').click
-  
-        # トップページにログインページへ遷移するボタンがあることを確認する
-        expect(page).to have_content('ログイン')
-  
-        # ログインページへ遷移する
-        visit new_user_session_path
-  
-        # 正しいユーザー情報を入力する
-        fill_in 'user_email', with: @user.email
-        fill_in 'user_password', with: @user.password
+        #ログインする
+        sign_in(@user)
         
-        # ログインボタンを押す
-        find('input[name="commit"]').click
-  
-        # トップページへ遷移することを確認する
-        expect(page).to have_current_path(root_path)
-  
         #メニューアイコンをクリックする
         find('.header-icon').click
   
