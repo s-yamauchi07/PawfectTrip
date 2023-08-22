@@ -2,22 +2,21 @@
   <h2 class="text-xl">行程入力</h2>
 
   <div class="flex justify-between">
-    <%= f.datetime_field :date, class:"input input-bordered w-6/12 input-sm max-w-xs mr-2"%>
-    <%= f.text_field :place, placeholder:"スポット名(例:東京駅)",class:"input input-bordered w-6/12 input-sm max-w-xs block" %>
+    <%= f.datetime_field :date, class:"input input-bordered w-6/12 input-sm max-w-xs mr-2", id:"itinerary_date"%>
+    <%= f.text_field :place, placeholder:"スポット名(例:東京駅)",class:"input input-bordered w-6/12 input-sm max-w-xs block",id:"itinerary_place" %>
   </div>
 
-  <%= f.text_area :memo, placeholder:"メモ(例:乗り換え5分)",class:"textarea textarea-bordered w-full mt-4" %>
+  <%= f.text_area :memo, placeholder:"メモ(例:乗り換え5分)",class:"textarea textarea-bordered w-full mt-4",id:"itinerary_memo" %>
 
   <h3>移動手段</h3>
   <div class="flex">
     <%= f.collection_radio_buttons(:transportation_id, Transportation.all, :id, :name) do |b| %>
       <% transportation = Transportation.find(b.value) %>
-        <label class="block text-center p-2" data-controller="add-button">
-  
+        <label class="block text-center p-2"data-controller="add-button">
             <div
               class ="rounded-full border border-blue-300 p-2"
               data-action="click->add-button#click">
-                <%= image_tag transportation.image, class:"w-8" %>
+                <%= image_tag transportation.image, class:"w-8 itinerary_transportation_#{transportation.id}" %>
             </div>
             <%= b.radio_button(class: "hidden") %>
             <%= b.label class:"text-xs"%>
