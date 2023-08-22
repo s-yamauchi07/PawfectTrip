@@ -3,11 +3,15 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     passwords: 'users/passwords'
   }
+  root "plans#index"
 
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
     get 'pets', to: 'users/registrations#new_pet'
     post 'pets', to: 'users/registrations#create_pet'
   end
-  root "plans#index"
+
+  resources :plans do
+    resources :itineraries, only:[:new, :create]
+  end
 end
