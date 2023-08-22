@@ -35,7 +35,7 @@ Things you may want to cover:
 
 ### Association
 - has_many: plans
-- has_many: pets
+- has_one: pet
 - has_many: plan_favorites
 - has_many: place_favorites
 
@@ -56,29 +56,29 @@ Things you may want to cover:
 |Column                |Type    |Options                           |
 |----------------------|------------|------------------------------|
 |title                 |string      |null: false                   |
-|departure_date        |date        |null: false                   |
-|destination_date      |date        |null: false                   |
-|departure_id          |date        |null: false                   |
-|destination_id        |date        |null: false                   |
+|departure_date        |datetime    |null: false                   |
+|return_date           |datetime    |null: false                   |
+|departure_id          |integer     |null: false                   |
+|destination_id        |integer     |null: false                   |
 |companion_id          |integer     |null: false                   |
-|dog_id                |references  |null: false                   |
-|tag_id                |references  |                              |
-|user_id               |references  |null: false, foreign_key:true |
+|pet                   |references  |null: false, foreign_key:true |
+|user                  |references  |null: false, foreign_key:true |
 
 ### Association
 - belongs_to :user
+- belongs_to :pet
 - has_many :plan_favorites
 - has_many :plan_tags 
 - has_many :tags, through: :plan_tags
 
 # itineraries table
-|Column                |Type    |Options                          |
-|----------------------|------------|-----------------------------|
-|date                  |date        |null: false                  |
-|time                  |time        |null: false                  |
-|place                 |string      |null: false                  |
-|transportation_id     |integer     |null: false                  |
-|memo                  |text        |                             |
+|Column                |Type    |Options                           |
+|----------------------|------------|------------------------------|
+|date                  |datetime    |null: false                   |
+|place                 |string      |null: false                   |
+|transportation_id     |integer     |null: false                   |
+|memo                  |text        |                              |
+|plan                  |references  |null: false, foreign_key: true|
 
 ### Association
 - belongs_to :plan
@@ -86,8 +86,8 @@ Things you may want to cover:
 ## plan_tags table 
 |Column                |Type    |Options                           |
 |----------------------|------------|------------------------------|
-|tag_id                |references  |null: false, foreign_key:true |
-|plan_id               |references  |null: false, foreign_key:true |
+|tag                   |references  |null: false, foreign_key:true |
+|plan                  |references  |null: false, foreign_key:true |
 
 ### Association
 - belongs_to :tag
@@ -115,8 +115,8 @@ Things you may want to cover:
 ## plan_favorites table 
 |Column                |Type    |Options                           |
 |----------------------|------------|------------------------------|
-|user_id               |references  |null: false, foreign_key:true |
-|plan_id               |references  |null: false, foreign_key:true |
+|user                  |references  |null: false, foreign_key:true |
+|plan                  |references  |null: false, foreign_key:true |
 
 ### Association
 - belongs_to :user
@@ -126,8 +126,8 @@ Things you may want to cover:
 ## place_favorites
 |Column                |Type    |Options                           |
 |----------------------|------------|------------------------------|
-|user_id               |references  |null: false, foreign_key:true |
-|place_id              |references  |null: false, foreign_key:true |
+|user                  |references  |null: false, foreign_key:true |
+|place                 |references  |null: false, foreign_key:true |
 
 ### Association
 - belongs_to :user

@@ -10,7 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_14_115639) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_17_105501) do
+  create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", charset: "utf8", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum"
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", charset: "utf8", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "itineraries", charset: "utf8", force: :cascade do |t|
+    t.datetime "date", null: false
+    t.string "place", null: false
+    t.integer "transportation_id", null: false
+    t.text "memo"
+    t.bigint "plan_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plan_id"], name: "index_itineraries_on_plan_id"
+  end
+
   create_table "pets", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "breed", null: false
@@ -20,6 +59,38 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_14_115639) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_pets_on_user_id"
+  end
+
+  create_table "plan_tags", charset: "utf8", force: :cascade do |t|
+    t.bigint "plan_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plan_id", "tag_id"], name: "index_plan_tags_on_plan_id_and_tag_id", unique: true
+    t.index ["plan_id"], name: "index_plan_tags_on_plan_id"
+    t.index ["tag_id"], name: "index_plan_tags_on_tag_id"
+  end
+
+  create_table "plans", charset: "utf8", force: :cascade do |t|
+    t.string "title", null: false
+    t.datetime "departure_date", null: false
+    t.datetime "return_date", null: false
+    t.integer "departure_id", null: false
+    t.integer "destination_id", null: false
+    t.integer "companion_id", null: false
+    t.bigint "pet_id", null: false
+    t.string "tag"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pet_id"], name: "index_plans_on_pet_id"
+    t.index ["user_id"], name: "index_plans_on_user_id"
+  end
+
+  create_table "tags", charset: "utf8", force: :cascade do |t|
+    t.string "tag_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", charset: "utf8", force: :cascade do |t|
@@ -36,5 +107,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_14_115639) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "itineraries", "plans"
   add_foreign_key "pets", "users"
+  add_foreign_key "plan_tags", "plans"
+  add_foreign_key "plan_tags", "tags"
 end
