@@ -80,3 +80,4 @@ gem 'active_hash'
 
 gem 'tailwindcss-rails'
 gem "cocoon"
+gem "kaminari"
