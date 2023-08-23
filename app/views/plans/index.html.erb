@@ -1,7 +1,7 @@
 <div class="lg:flex">
-    <div class="flex items-center justify-center w-full px-6 py-8 lg:h-[32rem] lg:w-1/2">
+    <div class="flex items-center justify-center w-full px-6 py-8 lg:h-[36rem] lg:w-1/2">
         <div class="max-w-xl">
-            <h2 class="text-3xl font-semibold text-gray-800 lg:text-4xl">愛犬といつも<span class="text-yellow-400">一緒に</span></h2>
+            <h2 class="text-3xl font-semibold text-gray-800 lg:text-4xl">愛犬といつも<span class="text-yellow-500">一緒に</span></h2>
 
             <p class="mt-4 text-sm text-gray-500 dark:text-gray-400 lg:text-base">Pawfect Tripではわんちゃん同伴での旅行日程を簡単に立てることができます。<br>ご自身の計画を保存しておくことはもちろん、他のユーザーの日程も参考にすることが可能です。</p>
 
@@ -41,8 +41,8 @@
           </a>
           <div class="relative mt-auto p-4">
             <span class="block text-sm">
-              <span class="badge badge-primary"><%= Prefecture.find(plan.departure_id).name %></span> → 
-              <span class="badge badge-accent"><%= Prefecture.find(plan.destination_id).name%></span>
+              <span class="badge badge-primary text-gray-100"><%= Prefecture.find(plan.departure_id).name %></span> → 
+              <span class="badge badge-accent text-gray-100"><%= Prefecture.find(plan.destination_id).name%></span>
             </span>
             <h2 class="mb-2 text-xl font-semibold transition duration-100"><%= plan.title %></h2>
 
