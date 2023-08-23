@@ -2,6 +2,7 @@ class PlansController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
+    @plans = Plan.order("created_at DESC")
   end
 
   def new
