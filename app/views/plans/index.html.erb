@@ -1,5 +1,23 @@
-<div id="first-view">
+<div class="lg:flex">
+    <div class="flex items-center justify-center w-full px-6 py-8 lg:h-[32rem] lg:w-1/2">
+        <div class="max-w-xl">
+            <h2 class="text-3xl font-semibold text-gray-800 lg:text-4xl">愛犬といつも<span class="text-yellow-400">一緒に</span></h2>
 
+            <p class="mt-4 text-sm text-gray-500 dark:text-gray-400 lg:text-base">Pawfect Tripではわんちゃん同伴での旅行日程を簡単に立てることができます。<br>ご自身の計画を保存しておくことはもちろん、他のユーザーの日程も参考にすることが可能です。</p>
+
+            <div class="flex flex-col mt-6 space-y-3 lg:space-y-0 lg:flex-row">
+                <%= link_to '新規登録', new_user_registration_path, class:"block px-5 py-2 text-sm font-medium tracking-wider text-center text-white transition-colors duration-300 transform bg-gray-900 rounded-md hover:bg-gray-700" %>
+
+                <%= link_to '使い方', "#", class:"block px-5 py-2 text-sm font-medium tracking-wider text-center text-gray-700 transition-colors duration-300 transform bg-gray-200 rounded-md lg:mx-4 hover:bg-gray-300" %>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-full h-64 lg:w-1/2 lg:h-auto">
+        <div class="w-full h-full bg-cover bg-center" style="background-image: url(<%= asset_path 'first_view.png' %>)">
+            <div class="w-full h-full bg-black opacity-20"></div>
+        </div>
+    </div>
 </div>
 
 <div class="bg-white py-6 sm:py-8 lg:py-12">
@@ -40,7 +58,7 @@
       <% end %>
     </div>
   </div>
-  <div class="join w-full justify-center">
+  <div class="join w-full justify-center mt-16">
     <%= paginate @plans %>
   </div>
 </div>
