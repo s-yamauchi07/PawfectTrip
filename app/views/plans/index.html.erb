@@ -1,1 +1,64 @@
-<h1>トップページ</h1>
+<div class="lg:flex">
+    <div class="flex items-center justify-center w-full px-6 py-8 lg:h-[36rem] lg:w-1/2">
+        <div class="max-w-xl">
+            <h2 class="text-3xl font-semibold text-gray-800 lg:text-4xl">愛犬といつも<span class="text-yellow-500">一緒に</span></h2>
+
+            <p class="mt-4 text-sm text-gray-500 dark:text-gray-400 lg:text-base">Pawfect Tripではわんちゃん同伴での旅行日程を簡単に立てることができます。<br>ご自身の計画を保存しておくことはもちろん、他のユーザーの日程も参考にすることが可能です。</p>
+
+            <div class="flex flex-col mt-6 space-y-3 lg:space-y-0 lg:flex-row">
+                <%= link_to '新規登録', new_user_registration_path, class:"block px-5 py-2 text-sm font-medium tracking-wider text-center text-white transition-colors duration-300 transform bg-gray-900 rounded-md hover:bg-gray-700" %>
+
+                <%= link_to '使い方', "#", class:"block px-5 py-2 text-sm font-medium tracking-wider text-center text-gray-700 transition-colors duration-300 transform bg-gray-200 rounded-md lg:mx-4 hover:bg-gray-300" %>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-full h-64 lg:w-1/2 lg:h-auto">
+        <div class="w-full h-full bg-cover bg-center" style="background-image: url(<%= asset_path 'first_view.png' %>)">
+            <div class="w-full h-full bg-black opacity-20"></div>
+        </div>
+    </div>
+</div>
+
+<div class="bg-white py-6 sm:py-8 lg:py-12">
+  <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+    <div class="mb-10 md:mb-16">
+      <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">注目の旅行日程</h2>
+
+      <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">
+        新しい旅行日程が更新されています。気になる日程はお気に入り登録しておきましょう！
+      </p>
+    </div>
+
+    <div class="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-8">
+      <% @plans.each do |plan| %>
+        <div>
+          <a href="#" class="group relative flex h-80 flex-col overflow-hidden rounded-lg bg-gray-100 shadow-lg">
+            <%= image_tag plan.cover_image, loading:"lazy", alt:"Photo by Minh Pham", class:"absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" %>
+
+            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 to-transparent md:via-transparent"></div>
+
+          </a>
+          <div class="relative mt-auto p-4">
+            <span class="block text-sm">
+              <span class="badge badge-primary text-gray-100"><%= Prefecture.find(plan.departure_id).name %></span> → 
+              <span class="badge badge-accent text-gray-100"><%= Prefecture.find(plan.destination_id).name%></span>
+            </span>
+            <h2 class="mb-2 text-xl font-semibold transition duration-100"><%= plan.title %></h2>
+
+            <div class="card-action min-h-12">
+              <% if plan.tags.present?%>
+                <% plan.tags.each do |tag| %>
+                  <span class="badge badge-outline"><%= "##{tag.tag_name}" %></span> 
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="join w-full justify-center mt-16">
+    <%= paginate @plans %>
+  </div>
+</div>
