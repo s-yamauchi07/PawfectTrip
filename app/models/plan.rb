@@ -7,6 +7,9 @@ class Plan < ApplicationRecord
   has_one_attached :cover_image
   accepts_nested_attributes_for :itineraries, allow_destroy: true
 
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :companion
+  belongs_to :prefecture
 
   with_options presence: true do
     validates :title 
