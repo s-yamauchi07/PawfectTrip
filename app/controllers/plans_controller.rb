@@ -24,6 +24,7 @@ class PlansController < ApplicationController
 
   def show
     @plan = Plan.find(params[:id])
+    @itineraries = Itinerary.all.group_by { |itinerary| itinerary.date}
   end
 
   private
