@@ -7,10 +7,13 @@ export default class extends Controller {
 
   connect() {
     this.cardTargets.map(x => x.hidden = true)
+    console.log(this.defaultTabValue)
     try {
       // デフォルトのタブを開いておく
       let selectedTab = this.tabTargets.find(element => element.id === this.defaultTabValue)
-      let selectedCard = this.cardTargets.find(element => element.id == this.defaultTabValue)
+      console.log(selectedTab)
+      let selectedCard = this.cardTargets.find(element => element.id === this.defaultTabValue)
+      console.log(this.selectedCard)
       selectedCard.hidden = false
       selectedTab.classList.add("tab-active")
     } catch {}
@@ -22,7 +25,6 @@ export default class extends Controller {
 
     if (selectedCard.hidden) {
       // 取得したcard要素が非表示の場合、取得したカードcard要素を非表示を解除+アクティブのタブを無効にする
-      console.log(this.tabTargets)
       this.cardTargets.map(x => x.hidden = true)
       this.tabTargets.map(x => x.classList.remove("tab-active"))
       

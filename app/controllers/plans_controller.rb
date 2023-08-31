@@ -24,7 +24,8 @@ class PlansController < ApplicationController
 
   def show
     @plan = Plan.find(params[:id])
-    @itineraries = Itinerary.all.group_by { |itinerary| itinerary.date}
+    @itineraries = @plan.itineraries.all.group_by { |itinerary| itinerary.date}
+    @unique_date = @itineraries.keys.group_by {|date| date.strftime("%m/%d")}.uniq
   end
 
   private
