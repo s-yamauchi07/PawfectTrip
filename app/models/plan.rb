@@ -8,6 +8,11 @@ class Plan < ApplicationRecord
   accepts_nested_attributes_for :itineraries, allow_destroy: true
 
 
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :companion
+  belongs_to :prefecture
+
+
   with_options presence: true do
     validates :title 
     validates :departure_date
