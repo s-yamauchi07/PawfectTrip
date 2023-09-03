@@ -1,9 +1,10 @@
 <div class="nested-fields border p-4 mb-4 artboard artboard-horizontal phone-1">
   <h2 class="text-xl">行程入力</h2>
 
-  <div class="flex justify-between">
+  <div class="flex justify-between" data-controller="place-search">
     <%= f.datetime_field :date, class:"input input-bordered w-6/12 input-sm max-w-xs mr-2", id:"itinerary_date"%>
-    <%= f.text_field :place, placeholder:"スポット名(例:東京駅)",class:"input input-bordered w-6/12 input-sm max-w-xs block",id:"itinerary_place" %>
+    <%= f.text_field :place, placeholder:"スポット名(例:東京駅)",class:"input input-bordered w-6/12 input-sm max-w-xs block",id:"itinerary_place",
+    "data-action"=>"input->place-search#search", "data-place-search-target"=>"place" %>
   </div>
 
   <%= f.text_area :memo, placeholder:"メモ(例:乗り換え5分)",class:"textarea textarea-bordered w-full mt-4",id:"itinerary_memo" %>
@@ -12,7 +13,7 @@
   <div class="flex">
     <%= f.collection_radio_buttons(:transportation_id, Transportation.all, :id, :name) do |b| %>
       <% transportation = Transportation.find(b.value) %>
-        <label class="block text-center p-2"data-controller="add-button">
+        <label class="block text-center p-2" data-controller="add-button">
             <div
               class ="rounded-full border border-blue-300 p-2"
               data-action="click->add-button#click">
