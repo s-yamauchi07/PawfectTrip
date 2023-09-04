@@ -5,6 +5,9 @@
     <%= f.datetime_field :date, class:"input input-bordered w-6/12 input-sm max-w-xs mr-2", id:"itinerary_date"%>
     <%= f.text_field :place, placeholder:"スポット名(例:東京駅)",class:"input input-bordered w-6/12 input-sm max-w-xs block",id:"itinerary_place",
     "data-action"=>"input->place-search#search", "data-place-search-target"=>"place" %>
+    <%= f.text_field :lat, "data-place-search-target"=>"lat", class:"hidden" %>
+    <%= f.text_field :lng, "data-place-search-target"=>"lng", class:"hidden" %>
+
   </div>
 
   <%= f.text_area :memo, placeholder:"メモ(例:乗り換え5分)",class:"textarea textarea-bordered w-full mt-4",id:"itinerary_memo" %>
