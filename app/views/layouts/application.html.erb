@@ -11,6 +11,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=<%="#{ENV['GOOGLE_MAPS_API']}"%>&libraries=places" async defer></script>
     <%= javascript_importmap_tags %>
     <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/@oddcamp/cocoon-vanilla-js@1.1.3/index.min.js' %>
+    <%= include_gon %>
   </head>
 
   <body>
