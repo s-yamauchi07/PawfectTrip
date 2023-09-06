@@ -24,6 +24,7 @@ class PlansController < ApplicationController
 
   def show
     @plan = Plan.find(params[:id])
+    gon.spots = @plan.itineraries
     # @planに紐づくitinerariesを日付でグループ分けする
     @itineraries = @plan.itineraries.all.group_by { |itinerary| itinerary.date.strftime("%m/%d")}
     @unique_date = @itineraries.keys.group_by {|date| date}.uniq
@@ -32,6 +33,6 @@ class PlansController < ApplicationController
   private
  
   def plan_params
-    params.require(:plan).permit(:cover_image ,:title, :departure_date, :return_date,:departure_id, :destination_id,:companion_id, :pet_id, itineraries_attributes:[:date, :place, :transportation_id,:memo]).merge(user_id: current_user.id)
+    params.require(:plan).permit(:cover_image ,:title, :departure_date, :return_date,:departure_id, :destination_id,:companion_id, :pet_id, itineraries_attributes:[:date, :place, :transportation_id, :memo, :lat, :lng]).merge(user_id: current_user.id)
   end
 end
