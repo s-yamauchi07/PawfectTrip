@@ -33,7 +33,7 @@
     <div class="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-8">
       <% @plans.each do |plan| %>
         <div>
-          <%= link_to plan_path(plan), class: "group relative flex h-80 flex-col overflow-hidden rounded-lg bg-gray-100 shadow-lg" do %>
+          <%= link_to plan_path(plan), data: {turbo:false},class: "group relative flex h-80 flex-col overflow-hidden rounded-lg bg-gray-100 shadow-lg" do %>
             <%= image_tag(plan.cover_image, loading: "lazy", alt: "Photo by Minh Pham", class: "absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110") %>
             <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 to-transparent md:via-transparent"></div>
           <% end %>
