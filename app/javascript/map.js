@@ -28,7 +28,8 @@ const initMap = () => {
         map.setCenter(results[0].geometry.location);
         marker[i] = new google.maps.Marker({
           map: map,
-          position: results[0].geometry.location
+          position: results[0].geometry.location,
+          label: `${i + 1}`
         })
 
         let address = results[0].formatted_address.split('、')
