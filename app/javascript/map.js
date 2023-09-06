@@ -12,17 +12,17 @@ const initMap = () => {
   const tokyoStation = { lat:35.6814104752183, lng:139.76721062882686};
 
   let map = new google.maps.Map(document.getElementById('map'), {
-  center: tokyoStation,
-  zoom: 8
+    center: tokyoStation,
+    zoom: 8
   });
 
+
   for(let i = 0; i < spots.length; i++) {
-    console.log(spots[i])
     let latlng = {
       lat: spots[i].lat,
       lng: spots[i].lng,
     };
-
+    // データベースの中から経度緯度を取り出して、ピン留め
     geocoder.geocode({ 'location': latlng }, function(results, status){
       if (status == 'OK') {
         map.setCenter(results[0].geometry.location);
@@ -31,9 +31,35 @@ const initMap = () => {
           position: results[0].geometry.location
         })
 
+        let address = results[0].formatted_address.split('、')
+        infoWindow[i] = new google.maps.InfoWindow({
+          content: `
+                  <h1>${gon.spots[i].place}</h1>
+                  <p>
+                    ${address[1]}
+                  </p>
+                  `
+        });
+    
+        marker[i].addListener('click', () => {
+          // クリックされた時に他のマーカーを閉じる
+          for (const j in marker) {
+            infoWindow[j].close(map, marker[j]);
+          }
+
+          infoWindow[i].open({
+            anchor: marker[i],
+            map,
+          })
+        })
+
       }
     })
+
+
   }
+
+
 }
 
 window.addEventListener('turbo:load', initMap);
