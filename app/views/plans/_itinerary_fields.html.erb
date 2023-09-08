@@ -16,15 +16,15 @@
   <div class="flex">
     <%= f.collection_radio_buttons(:transportation_id, Transportation.all, :id, :name) do |b| %>
       <% transportation = Transportation.find(b.value) %>
-        <label class="block text-center p-2" data-controller="add-button">
-            <div
-              class ="rounded-full border border-blue-300 p-2"
-              data-action="click->add-button#click">
-                <%= image_tag transportation.image, class:"w-8 itinerary_transportation_#{transportation.id}" %>
-            </div>
-            <%= b.radio_button(class: "hidden") %>
-            <%= b.label class:"text-xs"%>
-        </label>
+      <%= b.radio_button(class:"hidden") %>
+      <%= b.label do %>
+      <div data-controller="add-button">
+        <%= image_tag transportation.image, 
+        class:"icon w-10 m-2 p-1 rounded border-2 border-gray-300 itinerary_transportation_#{transportation.id}", 
+        "data-action"=>"click->add-button#click"
+        %>
+      </div>
+      <% end %>
     <% end %>
   </div>
 
