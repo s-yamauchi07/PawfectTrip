@@ -82,3 +82,4 @@ gem 'tailwindcss-rails'
 gem "cocoon"
 gem "kaminari"
 gem "gon"
+gem 'rails-i18n'
