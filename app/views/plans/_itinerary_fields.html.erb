@@ -13,7 +13,7 @@
   <%= f.text_area :memo, placeholder:"メモ(例:乗り換え5分)",class:"textarea textarea-bordered w-full mt-4",id:"itinerary_memo" %>
 
   <h3>移動手段</h3>
-  <div class="flex">
+  <div class="flex select-icon">
     <%= f.collection_radio_buttons(:transportation_id, Transportation.all, :id, :name) do |b| %>
       <% transportation = Transportation.find(b.value) %>
       <%= b.radio_button(class:"hidden") %>

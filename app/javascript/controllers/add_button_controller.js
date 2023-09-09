@@ -2,10 +2,11 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   click(e) {
-    const icons = window.document.querySelectorAll('.icon')
     const btn = e.currentTarget
+    const groupIcons = btn.closest('.select-icon')
+    const icons = groupIcons.querySelectorAll('.icon')
+    
     icons.forEach((icon) => {
-
       if (icon == btn) {
         icon.classList.add("bg-blue-300","border-blue-300")
         icon.classList.remove("border-gray-300")
@@ -15,5 +16,6 @@ export default class extends Controller {
       }
     })
   }
+
 }
   
