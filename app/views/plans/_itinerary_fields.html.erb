@@ -20,7 +20,8 @@
       <%= b.label do %>
       <div data-controller="add-button">
         <%= image_tag transportation.image, 
-        class:"icon w-10 m-2 p-1 rounded border-2 border-gray-300 itinerary_transportation_#{transportation.id}", 
+        class:"icon w-10 m-2 p-1 rounded border-2 border-gray-300 itinerary_transportation_#{transportation.id}
+        #{transportation.id == f.object.transportation_id ? 'bg-blue-300': ''}",
         "data-action"=>"click->add-button#click"
         %>
       </div>
@@ -28,7 +29,7 @@
     <% end %>
   </div>
 
-  <div  class="text-right" >
+  <div  class="text-right">
     <%= link_to_remove_association '削除', f, class:"btn btn-xs"%>
   </div>
 
