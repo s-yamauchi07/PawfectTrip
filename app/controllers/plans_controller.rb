@@ -1,6 +1,7 @@
 class PlansController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
-  before_action :set_plan, only: [:show, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_plan, only: [:show, :edit, :update, :destroy]
+  before_action :check_user, only: [:edit, :update, :destroy]
 
   def index
     @plans = Plan.page(params[:page]).per(8).order("created_at DESC")
@@ -34,12 +35,18 @@ class PlansController < ApplicationController
   end
 
   def update
-    # binding.pry
     if @plan.update(plan_params)
       redirect_to plan_path(@plan)
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    if @plan.destroy
+      flash[:notice] = '日程の削除が完了しました'
+    end
+    redirect_to root_path
   end
 
   private
@@ -52,5 +59,11 @@ class PlansController < ApplicationController
 
   def set_plan
     @plan = Plan.find(params[:id])
+  end
+
+  def check_user
+    if current_user != @plan.user
+      redirect_to root_path
+    end
   end
 end
