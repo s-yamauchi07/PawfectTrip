@@ -52,4 +52,6 @@ production:
   <<: *default
   database: PawfectTrip_production
   username: PawfectTrip
+  adapter: postgresql
+  url: <%= ENV['DATABASE_URL'] %>
   password: <%= ENV["PAWFECTTRIP_DATABASE_PASSWORD"] %>

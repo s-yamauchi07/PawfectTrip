@@ -74,6 +74,10 @@ group :test do
   gem "capybara"
 end
 
+group :production do
+  gem 'pg'
+end
+
 gem 'devise'
 gem 'pry-rails'
 gem 'active_hash'
@@ -83,3 +87,4 @@ gem "cocoon"
 gem "kaminari"
 gem "gon"
 gem 'rails-i18n'
+gem 'rakuten_web_service'
