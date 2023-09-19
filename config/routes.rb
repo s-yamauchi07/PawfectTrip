@@ -4,6 +4,11 @@ Rails.application.routes.draw do
     passwords: 'users/passwords'
   }
   root "plans#index"
+  resources :spots do
+    collection do
+      get 'search_hotel'
+    end
+  end
 
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
