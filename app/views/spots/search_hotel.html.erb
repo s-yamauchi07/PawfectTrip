@@ -1,0 +1,16 @@
+<% include_gon %>
+
+<div class="py-6 sm:py-8 lg:py-12">
+  <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl" >宿泊先検索</h2>
+
+  <div data-controller="search-hotel" class="mx-auto max-w-screen-2xl px-4 md:px-8 text-center">
+    <select data-action="change->search-hotel#search" data-search-hotel-target="prefecture" class="input input-bordered w-full max-w-xs">
+      <% Prefecture.all.each do |city| %>
+        <option value="<%= city.name %>"><%= city.name %></option>
+      <% end %>
+    <select>
+
+    <ul data-search-hotel-target="output" class="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-8">
+    <ul> 
+  <div>
+</div>
