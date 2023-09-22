@@ -3,8 +3,8 @@
 <div class="py-6 sm:py-8 lg:py-12">
   <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl" >宿泊先検索</h2>
 
-  <div data-controller="search-hotel" class="mx-auto max-w-screen-2xl px-4 md:px-8 text-center">
-    <select data-action="change->search-hotel#search" data-search-hotel-target="prefecture" class="input input-bordered w-full max-w-xs">
+  <div data-controller="search-hotel" class="mx-auto max-w-screen-2xl px-4 md:px-8 ">
+    <select data-action="change->search-hotel#search" data-search-hotel-target="prefecture" class="input input-bordered w-full max-w-xs block mx-auto">
       <% Prefecture.all.each do |city| %>
         <option value="<%= city.name %>"><%= city.name %></option>
       <% end %>
