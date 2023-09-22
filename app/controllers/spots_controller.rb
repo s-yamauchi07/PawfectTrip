@@ -1,11 +1,10 @@
 class SpotsController < ApplicationController
+  def show
+    hotel = RakutenWebService::Travel::Hotel.search(hotelNo: params[:id]).first
+    @hotel_info = hotel["hotelBasicInfo"]
+  end
+
   def search_hotel
     gon.application_id = ENV["RAKUTEN_APPLICATION_ID"]
-      # binding.pry
-    # if params[:keyword]
-    #   @hotels = RakutenWebService::Travel::Hotel.search(keyword: 'ペット わんちゃん', largeClassCode: 'japan', middleClassCode: 'tokyo',smallClassCode: 'tokyo',detailClassCode:'F')
-    # end
-
-    # binding.pry
   end
 end
