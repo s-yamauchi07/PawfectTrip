@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root "plans#index"
   resources :hotels do
     collection do
-      get 'search_hotel'
+      get 'search'
     end
   end
 
