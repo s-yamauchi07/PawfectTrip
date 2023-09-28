@@ -1,4 +1,4 @@
-class SpotsController < ApplicationController
+class HotelsController < ApplicationController
   def show
     hotel = RakutenWebService::Travel::Hotel.search(hotelNo: params[:id]).first
     @hotel_info = hotel["hotelBasicInfo"]
