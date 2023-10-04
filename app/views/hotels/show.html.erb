@@ -20,7 +20,7 @@
         <span class="title-font font-medium text-2xl text-gray-900">最安値 ¥<%= @hotel_info["hotelMinCharge"]%>/人</span>
         <div class="flex justify-end">
           <!--いいねボタン-->
-            <%= render partial: 'like', locals: {hotel_info: @hotel_info, hotel_record: @hotel_record} %>
+            <%= render partial: 'like', locals: {hotel_num: @hotel_num, hotel_record: @hotel_record} %>
           <!-- いいねボタン-->
           <button class="flex ml-4 text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
