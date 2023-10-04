@@ -5,16 +5,16 @@ class HotelsController < ApplicationController
     hotel = RakutenWebService::Travel::Hotel.search(hotelNo: params[:id]).first
     @hotel_info = hotel["hotelBasicInfo"]
     @hotel_rating = hotel["hotelRatingInfo"]
-    @hotel_record = Hotel.find_by(hotel_num: @hotel_info["hotelNo"])
     @hotel_num = params[:id]
+    @hotel_record = Hotel.find_by(hotel_num: @hotel_num)
   end
 
   def create
     @hotelform = HotelForm.new(form_params)
+    @hotel_num = params[:hotel_num]
+    @hotel_record = Hotel.find_by(hotel_num: @hotel_num)
     if @hotelform.valid?
       @hotelform.save
-      @hotel_record = Hotel.find_by(hotel_num: params[:hotel_num])
-      @hotel_num = params[:hotel_num]
 
       render turbo_stream: turbo_stream.replace(
         "like-btn",
