@@ -34,7 +34,7 @@ export default class extends Controller {
     async function searchHotel(prefectureCode) {
       const keyword = "ペット"
       try {
-        const hotelLists = await fetch(`https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=${keyword}&middleClassCode=${prefectureCode}&applicationId=${application_id }`);
+        const hotelLists = await fetch(`https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=${keyword}&datumType=1&middleClassCode=${prefectureCode}&applicationId=${application_id }`);
         if (!hotelLists.ok) {
           throw new Error("データ取得に失敗しました");
         }
@@ -52,11 +52,11 @@ export default class extends Controller {
       for (const list of hotelDataList) {
         // ホテル情報の変数化
         const basicInfo = list.hotel[0].hotelBasicInfo;
-        console.log(list)
         const hotelName = basicInfo.hotelName;
         const hotelImage = basicInfo.hotelImageUrl;
         const hoteladdress = basicInfo.address1 + basicInfo.address2;
         const hotelurl = basicInfo.hotelInformationUrl;
+        const hotelNum = basicInfo.hotelNo
         const reviewAverage = basicInfo.reviewAverage != null ? parseFloat(basicInfo.reviewAverage) : "無し";
     
         // 代替の画像URL
@@ -64,26 +64,28 @@ export default class extends Controller {
     
         const html = `
         <li>
-          <a href="${hotelurl}">
-            <div class="card max-w-sm bg-base-100 shadow-xl">
+          <a href="/hotels/${hotelNum}" data-turbolinks="false">
+          <div class="card max-w-sm bg-base-100 shadow-xl">
+            <div class="relative">
               <figure>
                 <img src=${hotelImage} alt="hotel-image" onerror="this.src='${altImageUrl}';" class="h-80 w-full object-cover" />
               </figure>
-              <div class="card-body">
-                <h3 class="card-title">
-                  ${hotelName}
-                </h3>
-                <p class="flex h-12 items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                    <path fill-rule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
-                  </svg>
-                  ${hoteladdress}
-                </p>
-                <div class="card-actions justify-end">
-                  <input type="radio" name="rating-4" class="mask mask-star-2 bg-orange-400" disabled /> ${reviewAverage}
-                </div>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">
+              <a href="${hotelurl}">${hotelName}</a>
+              </h3>
+              <p class="flex h-12 items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                  <path fill-rule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+                </svg>
+                ${hoteladdress}
+              </p>
+              <div class="card-actions justify-end">
+                <input type="radio" name="rating-4" class="mask mask-star-2 bg-orange-400" disabled /> ${reviewAverage}
               </div>
             </div>
+          </div>
           </a>
         </li>
         `;

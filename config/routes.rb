@@ -4,9 +4,9 @@ Rails.application.routes.draw do
     passwords: 'users/passwords'
   }
   root "plans#index"
-  resources :spots do
+  resources :hotels, only: [:show,:create, :destroy] do
     collection do
-      get 'search_hotel'
+      get 'search'
     end
   end
 
