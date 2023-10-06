@@ -12,10 +12,9 @@ class HotelsController < ApplicationController
   def create
     @hotelform = HotelForm.new(form_params)
     @hotel_num = params[:hotel_num]
-    @hotel_record = Hotel.find_by(hotel_num: @hotel_num)
     if @hotelform.valid?
       @hotelform.save
-
+      @hotel_record = Hotel.find_by(hotel_num: @hotel_num)
       render turbo_stream: turbo_stream.replace(
         "like-btn",
         partial: "hotels/like",
