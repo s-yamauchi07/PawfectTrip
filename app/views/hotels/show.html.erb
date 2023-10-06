@@ -1,3 +1,4 @@
+<% include_gon %>
 <section class="text-gray-600 body-font overflow-hidden">
   <div class="container px-5 py-24 mx-auto">
     <div class="lg:w-4/5 mx-auto flex flex-wrap">
@@ -131,3 +132,4 @@
     </div>
 </section>
 <!-- 詳細エリア-->
+<script src="https://maps.googleapis.com/maps/api/js?key=<%="#{ENV['GOOGLE_MAPS_API']}"%>&libraries=places" async defer></script>
