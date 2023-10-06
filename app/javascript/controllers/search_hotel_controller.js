@@ -64,7 +64,7 @@ export default class extends Controller {
     
         const html = `
         <li>
-          <a href="/hotels/${hotelNum}" data-turbo="false">
+          <a href="/hotels/${hotelNum}" data-turbolinks="false">
           <div class="card max-w-sm bg-base-100 shadow-xl">
             <div class="relative">
               <figure>
