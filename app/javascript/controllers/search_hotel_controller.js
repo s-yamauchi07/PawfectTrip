@@ -34,7 +34,7 @@ export default class extends Controller {
     async function searchHotel(prefectureCode) {
       const keyword = "ペット"
       try {
-        const hotelLists = await fetch(`https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=${keyword}&middleClassCode=${prefectureCode}&applicationId=${application_id }`);
+        const hotelLists = await fetch(`https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=${keyword}&datumType=1&middleClassCode=${prefectureCode}&applicationId=${application_id }`);
         if (!hotelLists.ok) {
           throw new Error("データ取得に失敗しました");
         }
@@ -52,7 +52,6 @@ export default class extends Controller {
       for (const list of hotelDataList) {
         // ホテル情報の変数化
         const basicInfo = list.hotel[0].hotelBasicInfo;
-        console.log(list)
         const hotelName = basicInfo.hotelName;
         const hotelImage = basicInfo.hotelImageUrl;
         const hoteladdress = basicInfo.address1 + basicInfo.address2;
@@ -65,7 +64,7 @@ export default class extends Controller {
     
         const html = `
         <li>
-          <a href="/hotels/${hotelNum}">
+          <a href="/hotels/${hotelNum}" data-turbo="false">
           <div class="card max-w-sm bg-base-100 shadow-xl">
             <div class="relative">
               <figure>

@@ -2,11 +2,13 @@ class HotelsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
 
   def show
-    hotel = RakutenWebService::Travel::Hotel.search(hotelNo: params[:id]).first
+    hotel = RakutenWebService::Travel::Hotel.search(hotelNo: params[:id], datumType: 1).first
     @hotel_info = hotel["hotelBasicInfo"]
     @hotel_rating = hotel["hotelRatingInfo"]
     @hotel_num = params[:id]
     @hotel_record = Hotel.find_by(hotel_num: @hotel_num)
+
+    gon.hotel = @hotel_info
   end
 
   def create
