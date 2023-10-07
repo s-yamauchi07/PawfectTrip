@@ -38,8 +38,12 @@
             <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 to-transparent md:via-transparent"></div>
           <% end %>
           <div class="relative mt-auto p-4">
-            <span class="block text-sm">
-              <span class="badge badge-primary text-gray-100"><%= Prefecture.find(plan.departure_id).name %></span> → 
+            <span class="block text-sm flex">
+              <span class="badge badge-primary text-gray-100"><%= Prefecture.find(plan.departure_id).name %></span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10.21 14.77a.75.75 0 01.02-1.06L14.168 10 10.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                <path fill-rule="evenodd" d="M4.21 14.77a.75.75 0 01.02-1.06L8.168 10 4.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+              </svg>
               <span class="badge badge-accent text-gray-100"><%= Prefecture.find(plan.destination_id).name%></span>
             </span>
             <h2 class="mb-2 text-xl font-semibold transition duration-100"><%= plan.title %></h2>
