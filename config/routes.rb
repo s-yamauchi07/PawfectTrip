@@ -18,5 +18,8 @@ Rails.application.routes.draw do
 
   resources :plans do
     resources :itineraries, only:[:new, :create]
+    collection do
+      get 'search'
+    end
   end
 end
