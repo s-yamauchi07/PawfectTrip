@@ -216,6 +216,10 @@ GEM
     rake (13.0.6)
     rakuten_web_service (1.13.2)
       json (~> 2.3)
+    ransack (4.0.0)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
     regexp_parser (2.8.1)
     reline (0.3.8)
       io-console (~> 0.5)
@@ -307,6 +311,7 @@ DEPENDENCIES
   rails (~> 7.0.0)
   rails-i18n
   rakuten_web_service
+  ransack
   rspec-rails
   selenium-webdriver
   sprockets-rails
