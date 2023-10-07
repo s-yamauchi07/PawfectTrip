@@ -40,4 +40,11 @@ class Plan < ApplicationRecord
     end
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["departure_id", "destination_id", "title"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["tags"]
+  end
 end

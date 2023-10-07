@@ -49,6 +49,11 @@ class PlansController < ApplicationController
     redirect_to root_path
   end
 
+  def search
+    @q = Plan.ransack(params[:q])
+    @plans = @q.result(distinct: true)
+  end
+
   private
  
   def plan_params
