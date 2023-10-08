@@ -34,41 +34,36 @@
 <% end %>
 
 <% if @plans.present? %>
-  <div class="flex flex-wrap gap-4">
-    <% @plans.each do |plan| %>
-      <div class="w-1/4">
-        <%= link_to plan_path(plan), class:"w-full" do %>
-          <div class="card max-w-xs bg-base-100 shadow-xl">
-            <div class="relative">
-              <figure>
-                <%= image_tag(plan.cover_image,class:"h-80 w-full object-cover")%>
-              </figure>
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">
-                <%= plan.title %>
-              </h3>
-              <p class="flex h-12 items-center">
-                <span class="block text-sm flex">
-                  <span class="badge badge-primary text-gray-100"><%= Prefecture.find(plan.departure_id).name %></span>
+  <div class="bg-white py-6 sm:py-8 lg:py-12">
+    <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+      <div class="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4">
+        <% @plans.each do |plan| %>
+          <div>
+            <%= link_to plan_path(plan), class:"group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg" do %>
+              <%= image_tag(plan.cover_image,class:"absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110")%>
+
+              <div class="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
+                <span class="text-gray-500 flex justify-center items-center">
+                  <%= Prefecture.find(plan.departure_id).name %>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
                     <path fill-rule="evenodd" d="M10.21 14.77a.75.75 0 01.02-1.06L14.168 10 10.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
                     <path fill-rule="evenodd" d="M4.21 14.77a.75.75 0 01.02-1.06L8.168 10 4.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
                   </svg>
-                  <span class="badge badge-accent text-gray-100"><%= Prefecture.find(plan.destination_id).name%></span>
+                  <%= Prefecture.find(plan.destination_id).name%>
                 </span>
-              </p>
-              <div class="card-actions justify-end items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-red-500">
-                  <path d="M9.653 16.915l-.005-.003-.019-.01a20.759 20.759 0 01-1.162-.682 22.045 22.045 0 01-2.582-1.9C4.045 12.733 2 10.352 2 7.5a4.5 4.5 0 018-2.828A4.5 4.5 0 0118 7.5c0 2.852-2.044 5.233-3.885 6.82a22.049 22.049 0 01-3.744 2.582l-.019.01-.005.003h-.002a.739.739 0 01-.69.001l-.002-.001z" />
-                </svg>
-                <span><%= plan.plan_likes.count %></span>
+                <span class="text-lg font-bold text-gray-800 lg:text-xl"><%= plan.title %></span>
+                <div class="card-actions justify-end items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-red-500">
+                    <path d="M9.653 16.915l-.005-.003-.019-.01a20.759 20.759 0 01-1.162-.682 22.045 22.045 0 01-2.582-1.9C4.045 12.733 2 10.352 2 7.5a4.5 4.5 0 018-2.828A4.5 4.5 0 0118 7.5c0 2.852-2.044 5.233-3.885 6.82a22.049 22.049 0 01-3.744 2.582l-.019.01-.005.003h-.002a.739.739 0 01-.69.001l-.002-.001z" />
+                  </svg>
+                  <span><%= plan.plan_likes.count %></span>
+                </div>
               </div>
-            </div>
+            <% end %>
           </div>
         <% end %>
       </div>
-    <% end %>
+    </div>
   </div>
 <% else %>
   <p>条件に一致する日程はありません</p>
