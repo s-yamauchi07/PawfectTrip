@@ -4,6 +4,7 @@ class Plan < ApplicationRecord
   has_many :itineraries, dependent: :destroy
   has_many :plan_tags, dependent: :destroy
   has_many :tags, through: :plan_tags
+  has_many :plan_likes
   has_one_attached :cover_image
   accepts_nested_attributes_for :itineraries, allow_destroy: true
 
