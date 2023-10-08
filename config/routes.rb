@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   resources :plans do
     resources :itineraries, only:[:new, :create]
-    resources :likes, only: [:create, :destroy] 
+    resource :likes, only: [:create, :destroy] 
     collection do
       get 'search'
     end
