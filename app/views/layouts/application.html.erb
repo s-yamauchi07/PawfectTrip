@@ -17,12 +17,15 @@
   <body>
     <header class="flex navbar bg-base-200">
       <div class="flex-1">
-        <div><%= link_to image_tag("header-logo.png", class:"h-20"), root_path%></div>
-        <div class="flex-none gap-2">
-          <div class="form-control">
-            <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
-          </div>
+        <div class="mr-6">
+          <%= link_to image_tag("header-logo.png", class:"h-20"), root_path%>
         </div>
+        <%= search_form_for Plan.ransack(params[:q]), url: search_plans_path, class:"flex items-center w-96" do |f| %>
+          <%= f.collection_select(:destination_id_eq, Prefecture.all, :id, :name,{ include_blank: '行き先から探す' }, {class:"input input-bordered w-full"}) %>
+          <div class="actions text-center ml-2">
+            <%= f.submit "日程検索", class:"btn btn-primary" %>
+          </div>
+        <% end %>
       </div>
 
       <ul>
