@@ -41,6 +41,10 @@ class Plan < ApplicationRecord
     end
   end
 
+  def like_by?(user)
+    plan_likes.exists?(user_id: user.id)
+  end
+
   def self.ransackable_attributes(auth_object = nil)
     ["departure_id", "destination_id", "title"]
   end
