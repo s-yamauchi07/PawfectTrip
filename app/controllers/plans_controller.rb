@@ -1,5 +1,5 @@
 class PlansController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :show, :destroy]
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
   before_action :check_user, only: [:edit, :update, :destroy]
 
@@ -47,6 +47,11 @@ class PlansController < ApplicationController
       flash[:notice] = '日程の削除が完了しました'
     end
     redirect_to root_path
+  end
+
+  def search
+    @q = Plan.ransack(params[:q])
+    @plans = @q.result(distinct: true)
   end
 
   private

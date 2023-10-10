@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_28_012503) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_08_015637) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -78,6 +78,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_28_012503) do
     t.index ["user_id"], name: "index_pets_on_user_id"
   end
 
+  create_table "plan_likes", charset: "utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "plan_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plan_id"], name: "index_plan_likes_on_plan_id"
+    t.index ["user_id"], name: "index_plan_likes_on_user_id"
+  end
+
   create_table "plan_tags", charset: "utf8", force: :cascade do |t|
     t.bigint "plan_id", null: false
     t.bigint "tag_id", null: false
@@ -130,6 +139,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_28_012503) do
   add_foreign_key "hotel_likes", "users"
   add_foreign_key "itineraries", "plans"
   add_foreign_key "pets", "users"
+  add_foreign_key "plan_likes", "plans"
+  add_foreign_key "plan_likes", "users"
   add_foreign_key "plan_tags", "plans"
   add_foreign_key "plan_tags", "tags"
 end

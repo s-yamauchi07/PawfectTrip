@@ -4,6 +4,7 @@ class Plan < ApplicationRecord
   has_many :itineraries, dependent: :destroy
   has_many :plan_tags, dependent: :destroy
   has_many :tags, through: :plan_tags
+  has_many :plan_likes
   has_one_attached :cover_image
   accepts_nested_attributes_for :itineraries, allow_destroy: true
 
@@ -40,4 +41,15 @@ class Plan < ApplicationRecord
     end
   end
 
+  def like_by?(user)
+    plan_likes.exists?(user_id: user.id)
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["departure_id", "destination_id", "title"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["tags"]
+  end
 end
