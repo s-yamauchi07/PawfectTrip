@@ -66,5 +66,11 @@
     </div>
   </div>
 <% else %>
-  <p>条件に一致する日程はありません</p>
+  <div class="text-center py-8">
+    <div class="avatar tooltip tooltip-open tooltip-top w-60" data-tip="条件に合致する日程はありません。">
+      <div class="rounded-full">
+          <%= image_tag "no_results.jpg"%>
+      </div>
+    </div>
+  </div>
 <% end %>
