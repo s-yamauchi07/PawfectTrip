@@ -15,78 +15,13 @@
   </head>
 
   <body>
-    <header class="flex navbar bg-base-200">
-      <div class="flex-1">
-        <div class="mr-6">
-          <%= link_to image_tag("header-logo.png", class:"h-20"), root_path%>
-        </div>
-        <%= search_form_for Plan.ransack(params[:q]), url: search_plans_path, class:"flex items-center w-96" do |f| %>
-          <%= f.collection_select(:destination_id_eq, Prefecture.all, :id, :name,{ include_blank: '行き先から探す' }, {class:"input input-bordered w-full"}) %>
-          <div class="actions text-center ml-2">
-            <%= f.submit "日程検索", class:"btn btn-primary" %>
-          </div>
-        <% end %>
-      </div>
-
-      <ul>
-        <li>
-          <%= link_to new_plan_path do %>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
-            </svg>
-            <p class="text-xs">日程作成</p>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to search_hotels_path do %>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
-            </svg>
-            <p class="text-xs">宿検索</p>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to search_plans_path do %>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75l-2.489-2.489m0 0a3.375 3.375 0 10-4.773-4.773 3.375 3.375 0 004.774 4.774zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-            <p class="text-xs">日程検索</p>
-          <% end %>
-        </li>
-
-      </ul>
-      <div class="dropdown dropdown-end">
-        <% if user_signed_in? %>
-          <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-            <div class="w-10 rounded-full">
-              <%= image_tag "dog-icon.png", class:"header-icon" %>
-            </div>
-          </label>
-          <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-            <li><%= link_to current_user.nickname %></li>
-            <li><%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete} %></li>
-          </ul> 
-        <% else %>
-          <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-            <div class="w-10 rounded-full">
-              <%= image_tag "dog-icon.png", class:"header-icon" %>
-            </div>
-          </label>
-         <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-            <li><%= link_to '新規登録', new_user_registration_path %></li>
-            <li><%= link_to 'ログイン', new_user_session_path %></li>
-            <li><%= link_to 'ゲストログイン', users_guest_sign_in_path, data: { turbo_method: :post} %></li>
-          </ul> 
-        <% end %>
-
-    </header>
+    <%= render partial: "layouts/header" %>
     <% flash.each do |message_type, message| %>
       <div class="alert alert-info text-center">
       <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
       <%= message %>
       </div>
     <% end %>
-
     <%= yield %>
   </body>
 </html>
