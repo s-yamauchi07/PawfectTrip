@@ -3,12 +3,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
+  attr_accessor :current_password
          
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :size
 
-  has_many :pets
+  has_many :pet
   has_many :hotel_likes
   has_many :plan_likes
   has_many :plans, dependent: :destroy
