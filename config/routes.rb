@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     passwords: 'users/passwords'
   }
   root "plans#index"
+  resources :users, only: [:show]
   resources :hotels, only: [:show,:create, :destroy] do
     collection do
       get 'search'
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
     get 'pets', to: 'users/registrations#new_pet'
     post 'pets', to: 'users/registrations#create_pet'
+    patch 'pets/:id', to: 'users/registrations#update_pet',as: :update_pet
   end
 
   resources :plans do
