@@ -1,0 +1,34 @@
+<div class="bg-white py-6 sm:py-8 lg:py-12">
+  <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+    <!-- quote - start -->
+    <div class="flex flex-col items-center gap-4 md:gap-6">
+      <a href="#" class="text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600">
+        <h2>本当に退会しますか？</h2>
+      </a>
+
+      <div class="max-w-md text-center text-gray-600 lg:text-lg">
+        <p>
+          退会手続きをされますと、すべてのサービスご利用いただけなくなります。<br>
+          退会をされる場合は、「退会する」ボタンをクリックしてください。
+        </p>
+      </div>
+
+      <div class="flex flex-col items-center gap-2 sm:flex-row md:gap-3">
+        <div class="h-12 w-12 overflow-hidden rounded-full bg-gray-100 shadow-lg md:h-14 md:w-14">
+          <%= image_tag "dog-icon", class:"h-full w-full object-cover object-center", alt:"user image"%>
+        </div>
+
+        <div>
+          <div class="text-center text-sm font-bold text-indigo-500 sm:text-left md:text-base"><%= current_user.nickname %></div>
+          <p class="text-center text-sm text-gray-500 sm:text-left md:text-sm">Your dog / <%= current_user.pet.name %></p>
+        </div>
+
+        <div>
+          <button class="btn btn-error"><%= link_to '退会する', withdraw_path(current_user), data: { turbo_method: :patch } %></button>
+          <button class="btn btn-info"><%= link_to 'キャンセル', user_path(current_user) %></button>
+        </div>
+      </div>
+    </div>
+    <!-- quote - end -->
+  </div>
+</div>
