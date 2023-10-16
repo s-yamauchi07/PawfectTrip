@@ -17,9 +17,13 @@
   <body class="h-screen">
     <%= render partial: "layouts/header" %>
     <% flash.each do |message_type, message| %>
-      <div class="alert alert-info text-center">
-      <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-      <%= message %>
+      <div class="bg-cyan-500 text-center py-2 lg:px-4">
+        <div class="p-2 bg-cyan-600 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
+          <span class="flex rounded-full uppercase px-2 py-1 text-xs font-bold mr-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          </span>
+          <span class="font-semibold mr-2 text-left flex-auto"><%= message %></span>
+        </div>
       </div>
     <% end %>
     <%= yield %>
