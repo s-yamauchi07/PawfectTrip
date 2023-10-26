@@ -3,24 +3,28 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
+  attr_accessor :current_password
          
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :size
 
-  has_many :pets
+  has_one :pet
   has_many :hotel_likes
   has_many :plan_likes
   has_many :plans, dependent: :destroy
-  validates :nickname, presence:true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ーa-zA-Z0-9]+\z/} 
+  validates :nickname, presence:true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ーa-zA-Z0-9]+\z/}
   
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
-  validates :password, format: {with: VALID_PASSWORD_REGEX, message: "must contain both letters and at least one number."}
+  validates :password, format: {with: VALID_PASSWORD_REGEX, message: "must contain both letters and at least one number."}, on: :create
 
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.nickname = 'GUEST'
       user.password = SecureRandom.urlsafe_base64
     end
+  end
+
+  def active_for_authentication?
+    super && (is_deleted == false)
   end
 end
