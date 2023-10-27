@@ -30,14 +30,14 @@ Things you may want to cover:
 |nickname              |string  |null: false, unique: true   |
 |email                 |string  |null: false, unique: true   |
 |encrypted_password    |string  |null: false                 |
-|password_confirmation |string  |null: false                 |
 |is_deleted            |boolean |null: false, default: false |
 
 ### Association
 - has_many: plans
+- has_many: plan_likes
 - has_one: pet
-- has_many: plan_favorites
-- has_many: place_favorites
+- has_many: hotel_likes
+- has_many: hotels, through: :hotel_likes
 
 ## pets table
 |Column                |Type        |Options                        |
@@ -50,6 +50,7 @@ Things you may want to cover:
 
 ### Association
 - belongs_to :user
+- hos_many: plans
 
 
 # plans table
@@ -67,7 +68,8 @@ Things you may want to cover:
 ### Association
 - belongs_to :user
 - belongs_to :pet
-- has_many :plan_favorites
+- hab_many :itineraries
+- has_many :plan_likes
 - has_many :plan_tags 
 - has_many :tags, through: :plan_tags
 
@@ -99,20 +101,10 @@ Things you may want to cover:
 |tag_name              |string      |null: false, unique:true |
 
 ### Association
-- has_many :plans 
+- has_many :plan_tags
 - has_many :plans, through: :plan_tags
 
-
-## places table
-|Column                |Type    |Options                           |
-|----------------------|------------|------------------------------|
-|name                  |string      |null: false                   |
-|address               |string      |null: false                   |
-
-### Association
-- has_many :place_favorites
-
-## plan_favorites table 
+## plan_likes table 
 |Column                |Type    |Options                           |
 |----------------------|------------|------------------------------|
 |user                  |references  |null: false, foreign_key:true |
@@ -122,13 +114,23 @@ Things you may want to cover:
 - belongs_to :user
 - belongs_to :plan
 
+## hotels table
+|Column                |Type    |Options                           |
+|----------------------|------------|------------------------------|
+|hotel_num             |integer     |null: false                   |
 
-## place_favorites
+### Association
+- has_many :hotel_likes
+- has_many :users, through: :hotel_likes
+
+## hotel_likes
 |Column                |Type    |Options                           |
 |----------------------|------------|------------------------------|
 |user                  |references  |null: false, foreign_key:true |
-|place                 |references  |null: false, foreign_key:true |
+|hotel                 |references  |null: false, foreign_key:true |
 
 ### Association
 - belongs_to :user
-- belongs_to :place
+- belongs_to :hotel
+
+
