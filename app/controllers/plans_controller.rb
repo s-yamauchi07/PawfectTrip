@@ -29,6 +29,8 @@ class PlansController < ApplicationController
     # @planに紐づくitinerariesを日付でグループ分けする
     @itineraries = @plan.itineraries.all.group_by { |itinerary| itinerary.date.strftime("%m/%d")}
     @unique_date = @itineraries.keys.group_by {|date| date}.uniq
+
+    @comment = Comment.new
   end
 
   def edit
