@@ -15,7 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
     session["devise.regist_data"] = {user: @user.attributes}
     session["devise.regist_data"][:user]["password"] = params[:user][:password]
-    @pet = @user.pet.build
+    @pet = @user.build_pet
     render :new_pet, status: :accepted
   end
 
