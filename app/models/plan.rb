@@ -12,6 +12,7 @@ class Plan < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :companion
   belongs_to :prefecture
+  has_many :comments
 
 
   with_options presence: true do
