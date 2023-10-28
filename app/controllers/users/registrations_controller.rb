@@ -40,7 +40,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       unless @pet.valid?
         render :new_pet, status: :unprocessable_entity and return
       end
-    @user.pet.build(@pet.attributes)
+    @user.build_pet(@pet.attributes)
     @user.save
     session["devise.regist_data"]["user"].clear
     sign_in(:user, @user)
