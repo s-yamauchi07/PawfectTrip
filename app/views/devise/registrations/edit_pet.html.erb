@@ -1,49 +1,61 @@
-<div class="container flex items-center justify-center h-screen">
-
-  <div class="card bg-blue-50 p-6 shadow-xl">
-    <h2 class="mb-6 text-2xl">わんこ編集</h2>
-    <%= form_with model: @pet, url: update_pet_path(@pet), data: { turbo_method: :put }, local: true do |f| %>
-      <%= render "devise/shared/error_messages", resource: @pet %>
-
-      <div class="form-control w-full max-w-xs mb-4">
-        <label class="label">
-          <span class="label-text">お名前</span>
-          <span class="label-text-alt">必須</span>
-        </label>
-        <%= f.text_field :name, autofocus: true, placeholder:"pochi",class:"input input-bordered w-full max-w-xs"%>
-      </div>
-
-      <div class="form-control w-full max-w-xs mb-4">
-        <label class="label">
-          <span class="label-text">犬種</span>
-          <span class="label-text-alt">必須</span>
-        </label>
-        <%= f.text_field :breed, autofocus: true, placeholder:"柴犬",class:"input input-bordered w-full max-w-xs"%>
-      </div>
-
-      <div class="form-control w-full max-w-xs mb-4">
-        <label class="label">
-          <span class="label-text">サイズ</span>
-          <span class="label-text-alt">必須</span>
-        </label>
-        <div class="flex">
-          <%= f.collection_radio_buttons(:size_id, Size.all, :id, :name, { class:"radio radio-secondary" })%><br />
+<section class=" overflow-hidden h-full">
+    <div class="flex min- overflow-hidden h-full">
+        <div class="relative flex-1 hidden w-0 overflow-hidden lg:block">
+            <%= image_tag "edit_prof.png", class:"absolute inset-0 object-cover w-full h-full bg-black"%>
         </div>
-      </div>
+        <div class="flex flex-col justify-center flex-1 px-4 py-12 bg-base-200 overflow-hidden sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+            <div class="w-full max-w-xl mx-auto lg:w-96">
+                <div>
+                    <h2 class="mt-6 text-3xl font-extrabold text-neutral-600">わんこ編集</h2>
+                </div>
 
-      <div class="form-control w-full max-w-xs mb-4">
-        <label class="label">
-          <span class="label-text">誕生日</span>
-          <span class="label-text-alt">必須</span>
-        </label>
-        <%= f.date_field :birthday, autofocus: true,class:"input input-bordered w-full max-w-xs"%>
-      </div>
+                <div class="mt-8">
+                    <div class="mt-6">
+                        <%= form_with model: @pet, url: update_pet_path(@pet), data: { turbo_method: :put }, local: true do |f| %>
+                          <%= render "devise/shared/error_messages", resource: @pet %>
+                          <div class="form-control w-full mb-4">
+                            <label class="label">
+                              <span class="label-text">お名前</span>
+                              <span class="label-text-alt">必須</span>
+                            </label>
+                            <%= f.text_field :name, autofocus: true, placeholder:"pochi",class:"input input-bordered w-full"%>
+                          </div>
 
-      <div class="actions mt-4">
-        <%= f.submit "Sign up", class:"btn btn-accent" %>
-      </div>
+                          <div class="form-control w-full mb-4">
+                            <label class="label">
+                              <span class="label-text">犬種</span>
+                              <span class="label-text-alt">必須</span>
+                            </label>
+                            <%= f.text_field :breed, autofocus: true, placeholder:"柴犬",class:"input input-bordered w-full"%>
+                          </div>
 
-      <%= render "devise/shared/links" %>
-    <% end %>
-  </div>
-</div>
+                          <div class="form-control w-full mb-4">
+                            <label class="label">
+                              <span class="label-text">サイズ</span>
+                              <span class="label-text-alt">必須</span>
+                            </label>
+                            <div class="flex">
+                              <%= f.collection_radio_buttons(:size_id, Size.all, :id, :name, { class:"radio radio-secondary" })%><br />
+                            </div>
+                          </div>
+
+                          <div class="form-control w-full mb-4">
+                            <label class="label">
+                              <span class="label-text">誕生日</span>
+                              <span class="label-text-alt">必須</span>
+                            </label>
+                            <%= f.date_field :birthday, autofocus: true,class:"input input-bordered w-full"%>
+                          </div>
+
+                          <div>
+                            <button class="flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-cyan-600 rounded-xl hover:bg-cyan-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">
+                              <%= f.submit "update"%>
+                            </button>  
+                          </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
