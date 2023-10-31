@@ -26,9 +26,10 @@ Rails.application.routes.draw do
   resources :plans do
     resources :itineraries, only:[:new, :create]
     resource :likes, only: [:create, :destroy] 
+    resources :comments, only: [:index, :create, :edit, :destroy]
     collection do
       get 'search'
     end
-    resource :comments, only:[:create, :edit, :destroy]
   end
+  
 end
