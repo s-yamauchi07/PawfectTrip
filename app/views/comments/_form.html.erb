@@ -1,0 +1,7 @@
+<div id="new_comment">
+  <%= form_with model:[plan, comment],local:true, remote: true do |f|%>
+    <%= render "shared/error_messages", resource: f.object %>
+    <%= f.text_field :comment %>
+    <%= f.submit "投稿" %>
+  <% end %>
+</div>

@@ -31,6 +31,7 @@ class PlansController < ApplicationController
     @unique_date = @itineraries.keys.group_by {|date| date}.uniq
 
     @comment = Comment.new
+    @comments = @plan.comments.includes(:user)
   end
 
   def edit

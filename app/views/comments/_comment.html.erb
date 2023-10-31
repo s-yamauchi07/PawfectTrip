@@ -1,0 +1,7 @@
+
+  <%= turbo_frame_tag dom_id(comment) do %>
+    <div class="comment">
+      <h2><%= comment.comment %></h2>
+      <p><%= comment.user.nickname %></p>
+    </div>
+  <% end %>
