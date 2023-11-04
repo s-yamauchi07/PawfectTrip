@@ -1,7 +1,7 @@
 <div class="text-center mx-auto py-6 sm:py-8 lg:py-12 w-1/2">
+  <%= render partial:"form", locals: {plan: @plan, comment: @comment} %>
+
   <div id="comments">
     <%= render @comments %>
   </div>
-
-  <%= render partial:"form", locals: {plan: @plan, comment: @comment} %>
 </div>
