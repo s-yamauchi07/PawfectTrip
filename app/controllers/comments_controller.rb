@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_plan, only: [:index, :create]
-  before_action :set_comments, only: [:index, :create]
+  before_action :set_plan, only: [:index, :create, :edit, :update]
+  before_action :set_comments, only: [:index, :create, :update]
 
   def index
     @comment = Comment.new
@@ -20,6 +20,23 @@ class CommentsController < ApplicationController
           format.html { render :index, status: :unprocessable_entity }
         end
       end
+  end
+
+  def edit
+    @comment = Comment.find(params[:id])
+  end
+
+  def update
+    @comment = Comment.find(params[:id])
+    respond_to do |format|
+      if @comment.update(comment_params)
+        @comment = Comment.new
+        format.html { redirect_to plan_comments_path }
+        format.turbo_stream
+      else
+        format.html { render :index, status: :unprocessable_entity }
+      end
+    end
   end
 
   private
