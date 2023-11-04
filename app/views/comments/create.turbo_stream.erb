@@ -1,9 +1,7 @@
-<h2>コメント一覧</h2>
+<%= turbo_stream.prepend "comments" do %>
+  <%= render @comments %>
+<% end %>
 
 <%= turbo_stream.replace "new_comment" do %>
   <%= render partial:"form", locals: {plan: @plan, comment: @comment} %>
-<% end %>
-
-<%= turbo_stream.prepend "comments" do %>
-  <%= render @comments %>
 <% end %>
