@@ -1,7 +1,9 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_plan, only: [:index, :create, :edit, :update]
-  before_action :set_comments, only: [:index, :create, :update]
+  before_action :set_plan, only: [:index, :create, :edit, :update, :destroy]
+  before_action :set_comment, only: [ :edit, :update, :destroy]
+  before_action :set_comment_lists, only: [:index, :create, :update]
+  before_action :check_user, only: [:edit, :update, :destroy]
 
   def index
     @comment = Comment.new
@@ -13,7 +15,7 @@ class CommentsController < ApplicationController
       respond_to do |format|
         if @comment.save
           # 入力フォームのリセットのために変数を再定義
-          @comment = Comment.new
+          reset_form
           format.html { redirect_to plan_comments_path }
           format.turbo_stream
         else
@@ -23,14 +25,25 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @comment = Comment.find(params[:id])
   end
 
   def update
-    @comment = Comment.find(params[:id])
     respond_to do |format|
       if @comment.update(comment_params)
-        @comment = Comment.new
+        reset_form
+        format.html { redirect_to plan_comments_path,notice: "Post was successfully created." }
+        format.turbo_stream
+      else
+        format.html { render :index, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    respond_to do |format|
+      if @comment.destroy
+        reset_form
+        @comments = @plan.comments.includes(:user)
         format.html { redirect_to plan_comments_path }
         format.turbo_stream
       else
@@ -48,7 +61,21 @@ class CommentsController < ApplicationController
     @plan = Plan.find(params[:plan_id])
   end
 
-  def set_comments
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
+
+  def set_comment_lists
     @comments = @plan.comments.includes(:user)
+  end
+
+  def check_user
+    unless @comment.user == current_user
+      redirect_to plan_comments_path
+    end
+  end
+
+  def reset_form
+    @comment = Comment.new
   end
 end

@@ -1,0 +1,8 @@
+<%= turbo_stream.replace "new_comment" do %>
+  <%= render partial:"form", locals: {plan: @plan, comment: @comment} %>
+<% end %>
+
+<%= turbo_stream.update "comments" do %>
+  <%= render @comments %>
+<% end %>
+
