@@ -31,8 +31,9 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
+        @comment.broadcast_update_later_to("comments_channel_#{@plan.id}")
         reset_form
-        format.html { redirect_to plan_comments_path,notice: "Post was successfully created." }
+        format.html { redirect_to plan_comments_path }
         format.turbo_stream
       else
         format.html { render :index, status: :unprocessable_entity }
@@ -43,8 +44,9 @@ class CommentsController < ApplicationController
   def destroy
     respond_to do |format|
       if @comment.destroy
+        @comment.broadcast_remove_to("comments_channel_#{@plan.id}")
         reset_form
-        @comments = @plan.comments.includes(:user)
+        # @comments = @plan.comments.includes(:user)
         format.html { redirect_to plan_comments_path }
         format.turbo_stream
       else
