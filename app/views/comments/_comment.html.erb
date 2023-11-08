@@ -8,8 +8,8 @@
       <div class="chat-bubble">
         <%= comment.comment %>
         <div class="flex justify-end text-xs mt-1">
-          <%= link_to '削除', plan_comment_path(@plan, comment), data: { turbo_method: :delete} %>
-          <%= link_to '編集',edit_plan_comment_path(@plan, comment), class:"ml-2" %>
+          <%= link_to '削除', plan_comment_path(comment.plan, comment), data: { turbo_method: :delete} %>
+          <%= link_to '編集',edit_plan_comment_path(comment.plan, comment), class:"ml-2" %>
         </div>
       </div>
     </div>
