@@ -13,8 +13,9 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
 
       respond_to do |format|
+        # binding.pry
         if @comment.save
-          # 入力フォームのリセットのために変数を再定義
+          @comment.broadcast_prepend_later_to("comments_channel")
           reset_form
           format.html { redirect_to plan_comments_path }
           format.turbo_stream

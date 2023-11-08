@@ -5,3 +5,5 @@
     <%= render @comments %>
   </div>
 </div>
+
+<%= turbo_stream_from "comments_channel" %>
