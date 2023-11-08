@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
       respond_to do |format|
         # binding.pry
         if @comment.save
-          @comment.broadcast_prepend_later_to("comments_channel")
+          @comment.broadcast_prepend_later_to("comments_channel_#{@plan.id}")
           reset_form
           format.html { redirect_to plan_comments_path }
           format.turbo_stream

@@ -6,4 +6,4 @@
   </div>
 </div>
 
-<%= turbo_stream_from "comments_channel" %>
+<%= turbo_stream_from "comments_channel_#{@plan.id}" %>

@@ -1,6 +1,7 @@
 class CommentsChannel < ApplicationCable::Channel
   def subscribed
-    # stream_from "comments_chanel"
+    @plan = Plan.find(params[:plan_id])
+    stream_from "comments_chanel_#{@plan.id}"
   end
 
   def unsubscribed
