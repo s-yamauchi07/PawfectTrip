@@ -15,7 +15,8 @@ class CommentsController < ApplicationController
       respond_to do |format|
         # binding.pry
         if @comment.save
-          @comment.broadcast_prepend_later_to("comments_channel_#{@plan.id}")
+          @user = @comment.user
+          @comment.broadcast_prepend_later_to("comments_channel_#{@plan.id}", locals: {current_user: current_user})
           reset_form
           format.html { redirect_to plan_comments_path }
           format.turbo_stream
@@ -26,12 +27,14 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @user = current_user
   end
 
   def update
+    @user = current_user
     respond_to do |format|
       if @comment.update(comment_params)
-        @comment.broadcast_update_later_to("comments_channel_#{@plan.id}")
+        @comment.broadcast_update_later_to("comments_channel_#{@plan.id}",locals: {current_user: current_user})
         reset_form
         format.html { redirect_to plan_comments_path }
         format.turbo_stream
@@ -42,6 +45,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @user = current_user
     respond_to do |format|
       if @comment.destroy
         @comment.broadcast_remove_to("comments_channel_#{@plan.id}")
@@ -69,7 +73,7 @@ class CommentsController < ApplicationController
   end
 
   def set_comment_lists
-    @comments = @plan.comments.includes(:user)
+    @comments = @plan.comments.includes(:user).order("updated_at DESC ")
   end
 
   def check_user
