@@ -35,7 +35,7 @@ Things you may want to cover:
 ### Association
 - has_many: plans
 - has_many: plan_likes
-- has_one: pet
+- has_many: pets
 - has_many: hotel_likes
 - has_many: hotels, through: :hotel_likes
 
