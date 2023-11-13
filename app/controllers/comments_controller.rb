@@ -13,7 +13,6 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
 
       respond_to do |format|
-        # binding.pry
         if @comment.save
           @user = @comment.user
           @comment.broadcast_prepend_later_to("comments_channel_#{@plan.id}", locals: {current_user: current_user})
@@ -50,7 +49,6 @@ class CommentsController < ApplicationController
       if @comment.destroy
         @comment.broadcast_remove_to("comments_channel_#{@plan.id}")
         reset_form
-        # @comments = @plan.comments.includes(:user)
         format.html { redirect_to plan_comments_path }
         format.turbo_stream
       else
