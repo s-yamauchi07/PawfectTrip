@@ -1,5 +1,5 @@
 class PlansController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :show, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
   before_action :check_user, only: [:edit, :update, :destroy]
 
@@ -29,6 +29,9 @@ class PlansController < ApplicationController
     # @planに紐づくitinerariesを日付でグループ分けする
     @itineraries = @plan.itineraries.all.group_by { |itinerary| itinerary.date.strftime("%m/%d")}
     @unique_date = @itineraries.keys.group_by {|date| date}.uniq
+
+    @comment = Comment.new
+    @comments = @plan.comments.includes(:user)
   end
 
   def edit

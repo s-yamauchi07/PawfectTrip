@@ -123,7 +123,7 @@ Things you may want to cover:
 - has_many :hotel_likes
 - has_many :users, through: :hotel_likes
 
-## hotel_likes
+## hotel_likes table
 |Column                |Type    |Options                           |
 |----------------------|------------|------------------------------|
 |user                  |references  |null: false, foreign_key:true |
@@ -133,4 +133,13 @@ Things you may want to cover:
 - belongs_to :user
 - belongs_to :hotel
 
+## comments table
+|Column                |Type    |Options                           |
+|----------------------|------------|------------------------------|
+|comment               |text        |null: false                   |
+|user                  |references  |null: false, foreign_key:true |
+|plan                  |references  |null: false, foreign_key:true |
 
+### Association
+- belongs_to :user
+- belongs_to :plan

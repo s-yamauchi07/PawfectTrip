@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     passwords: 'users/passwords'
   }
+
   root "plans#index"
   resources :users, only: [:show]
   get "users/:id/unsubscribe", to: "users#unsubscribe", as: "unsubscribe"
@@ -25,8 +26,10 @@ Rails.application.routes.draw do
   resources :plans do
     resources :itineraries, only:[:new, :create]
     resource :likes, only: [:create, :destroy] 
+    resources :comments, only: [:index, :create, :edit, :update, :destroy]
     collection do
       get 'search'
     end
   end
+  
 end
