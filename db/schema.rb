@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_28_081925) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_14_032152) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -123,6 +123,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_28_081925) do
     t.index ["user_id"], name: "index_plans_on_user_id"
   end
 
+  create_table "sns_creadentials", charset: "utf8", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sns_creadentials_on_user_id"
+  end
+
   create_table "tags", charset: "utf8", force: :cascade do |t|
     t.string "tag_name"
     t.datetime "created_at", null: false
@@ -155,4 +164,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_28_081925) do
   add_foreign_key "plan_likes", "users"
   add_foreign_key "plan_tags", "plans"
   add_foreign_key "plan_tags", "tags"
+  add_foreign_key "sns_creadentials", "users"
 end
