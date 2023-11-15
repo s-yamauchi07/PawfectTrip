@@ -47,7 +47,7 @@
                             </div>
                         </div>
                         <div>
-                          <button type="submit" class="w-full items-center block px-10 py-3.5 text-base font-medium text-center bg-gray-100 text-blue-600 transition duration-500 ease-in-out transform border-2 shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                           <%= button_to user_google_oauth2_omniauth_authorize_path, data: {turbo: false },class="w-full items-center block px-10 py-3.5 text-base font-medium text-center bg-gray-100 text-blue-600 transition duration-500 ease-in-out transform border-2 shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" do %>
                                 <div class="flex items-center justify-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="w-6 h-6" viewBox="0 0 48 48">
                                         <defs>
@@ -63,7 +63,7 @@
                                     </svg>
                                     <span class="ml-4"> Log in with Google</span>
                                 </div>
-                            </button>
+                            <% end %>
                         </div>
                     </div>
                 </div>
