@@ -10,12 +10,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     @user = User.new(sign_up_params)
+    # sns認証での登録であれば、ランダムにパスワード作成してpasswordの値に代入。そうでなければ、paramsからpasswordを取得する。
+    pass = params[:sns_auth] == "true" ? SecureRandom.alphanumeric : params[:user][:password]
+    @user.password = pass
+    @user.password_confirmation = pass
+    session["devise.regist_data"] = {user: @user.attributes}
+    session["devise.regist_data"][:user]["password"] = pass
+
     unless @user.valid?
       render :new, status: :unprocessable_entity and return
     end
-    session["devise.regist_data"] = {user: @user.attributes}
-    session["devise.regist_data"][:user]["password"] = params[:user][:password]
-    @pet = @user.build_pet
+    @pet = @user.pets.build
     render :new_pet, status: :accepted
   end
 
@@ -40,7 +45,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       unless @pet.valid?
         render :new_pet, status: :unprocessable_entity and return
       end
-    @user.build_pet(@pet.attributes)
+    @user.pets.build(@pet.attributes)
     @user.save
     session["devise.regist_data"]["user"].clear
     sign_in(:user, @user)
@@ -55,7 +60,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
     sign_in(:user, @user)
     redirect_to user_path(@user)
-    
   end
 
   private

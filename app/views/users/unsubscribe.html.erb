@@ -19,7 +19,11 @@
 
           <div class="py-2 text-center">
             <div class="text-center text-sm font-bold text-indigo-500"><%= current_user.nickname %></div>
-            <p class="text-center text-sm text-gray-500 sm:text-left md:text-sm">Your dog / <%= current_user.pet.name %></p>
+            <p class="text-center text-sm text-gray-500 sm:text-left md:text-sm">Your dog / 
+              <% current_user.pets.each do |pet| %>
+                <%= pet.name %>
+              <% end %>
+            </p>
           </div>
 
           <div>
