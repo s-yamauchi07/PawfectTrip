@@ -21,7 +21,7 @@ class Plan < ApplicationRecord
     validates :return_date
   end
   
-  with_options numericality: { other_than:1, message: "must be selected"} do
+  with_options numericality: { other_than:1, message: "を選択してください"} do
     validates :departure_id
     validates :destination_id
     validates :companion_id

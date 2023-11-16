@@ -20,22 +20,22 @@ RSpec.describe Itinerary, type: :model do
       it '日付と時刻を入力していない場合' do
         @itinerary.date = nil
         @itinerary.valid?
-        expect(@itinerary.errors.full_messages).to include("Date can't be blank")
+        expect(@itinerary.errors.full_messages).to include("日付を入力してください")
       end
       it '場所を入力していない場合' do
         @itinerary.place = nil
         @itinerary.valid?
-        expect(@itinerary.errors.full_messages).to include("Place can't be blank")
+        expect(@itinerary.errors.full_messages).to include("スポット名を入力してください")
       end
       it '移動手段を入力していない場合' do
         @itinerary.transportation_id = nil
         @itinerary.valid?
-        expect(@itinerary.errors.full_messages).to include("Transportation must be selected")
+        expect(@itinerary.errors.full_messages).to include("交通手段を選択してください")
       end
       it 'planが紐づいていない場合' do
         @itinerary.plan = nil
         @itinerary.valid?
-        expect(@itinerary.errors.full_messages).to include("Plan must exist")
+        expect(@itinerary.errors.full_messages).to include("旅行日程を入力してください")
       end
     end
   end

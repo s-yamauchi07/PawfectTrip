@@ -18,7 +18,7 @@ class User < ApplicationRecord
   validates :nickname, presence:true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ーa-zA-Z0-9]+\z/}
   
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
-  validates :password, format: {with: VALID_PASSWORD_REGEX, message: "must contain both letters and at least one number."}, on: :create
+  validates :password, format: {with: VALID_PASSWORD_REGEX, message: "は半角英数字混合で入力してください"}, on: :create
 
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|

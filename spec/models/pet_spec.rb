@@ -16,47 +16,47 @@ RSpec.describe Pet, type: :model do
       it 'nameが空の場合' do
         @pet.name = ''
         @pet.valid?
-        expect(@pet.errors.full_messages).to include("Name can't be blank")
+        expect(@pet.errors.full_messages).to include("お名前を入力してください")
       end
       it 'nameに半角カタカナが含まれる場合' do
         @pet.name = 'ﾎﾟﾁ'
         @pet.valid?
-        expect(@pet.errors.full_messages).to include("Name is invalid")
+        expect(@pet.errors.full_messages).to include("お名前は全角文字または半角英字で入力してください")
       end
       it 'nameに半角数字が含まれる場合' do
         @pet.name = 'ポチ111'
         @pet.valid?
-        expect(@pet.errors.full_messages).to include("Name is invalid")
+        expect(@pet.errors.full_messages).to include("お名前は全角文字または半角英字で入力してください")
       end
       it 'breedが空の場合' do
         @pet.breed = ''
         @pet.valid?
-        expect(@pet.errors.full_messages).to include("Breed can't be blank")
+        expect(@pet.errors.full_messages).to include("犬種を入力してください")
       end
       it 'breedに半角カタカナが含まれる場合' do
         @pet.breed = 'ｼﾊﾞｹﾝ'
         @pet.valid?
-        expect(@pet.errors.full_messages).to include("Breed is invalid")
+        expect(@pet.errors.full_messages).to include("犬種は全角文字で入力してください")
       end
       it 'breedに半角英字が含まれる場合' do
         @pet.breed = 'shiba'
         @pet.valid?
-        expect(@pet.errors.full_messages).to include("Breed is invalid")
+        expect(@pet.errors.full_messages).to include("犬種は全角文字で入力してください")
       end
       it 'breedに半角数字が含まれる場合' do
         @pet.breed = 'sh1ba'
         @pet.valid?
-        expect(@pet.errors.full_messages).to include("Breed is invalid")
+        expect(@pet.errors.full_messages).to include("犬種は全角文字で入力してください")
       end
       it 'sizeが空の場合' do
         @pet.size_id = ''
         @pet.valid?
-        expect(@pet.errors.full_messages).to include("Size must be select")
+        expect(@pet.errors.full_messages).to include("サイズを選択してください")
       end
       it 'birthdayが空の場合' do
         @pet.birthday = ''
         @pet.valid?
-        expect(@pet.errors.full_messages).to include("Birthday can't be blank")
+        expect(@pet.errors.full_messages).to include("誕生日を入力してください")
       end
     end
   end
