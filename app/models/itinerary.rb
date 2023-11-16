@@ -6,5 +6,5 @@ class Itinerary < ApplicationRecord
     validates :place
   end
 
-  validates :transportation_id, numericality: { message: "must be selected"}
+  validates :transportation_id, numericality: { message: "を選択してください"}
 end
