@@ -5,3 +5,41 @@ ja:
       short: "%Y/%m/%d"
       only_date: "%m/%d"
       only_time: "%H:%M"
+  activerecord:
+    attributes:
+      user:
+        nickname: ニックネーム
+      pet:
+        name: お名前
+        breed: 犬種
+        birthday: 誕生日
+        size_id: サイズ
+      plan:
+        title: タイトル
+        departure_date: 出発日
+        return_date: 帰着日
+        departure_id: 出発地
+        destination_id: 目的地
+        companion_id: 同伴者
+        pet: 同行わんこ
+        user: ユーザー
+      plan/itineraries:
+          memo: メモ
+          date: 日付
+          place: スポット名
+          transportation_id: 交通手段
+          plan: 旅行日程
+      itinerary:
+          memo: メモ
+          date: 日付
+          place: スポット名
+          transportation_id: 交通手段
+          plan: 旅行日程
+
+
+
+
+
+      
+
+
