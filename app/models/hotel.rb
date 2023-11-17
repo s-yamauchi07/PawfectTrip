@@ -5,3 +5,4 @@ class Hotel < ApplicationRecord
     hotel_likes.exists?(user_id: user.id)
   end
 end
+    
