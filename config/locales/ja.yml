@@ -35,6 +35,10 @@ ja:
           place: スポット名
           transportation_id: 交通手段
           plan: 旅行日程
+      comment:
+          comment: コメント
+          user: ユーザー
+          plan: 旅行日程
 
 
 
