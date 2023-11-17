@@ -39,6 +39,8 @@ ja:
         comment: コメント
         user: ユーザー
         plan: 旅行日程
+      tag:
+        tag_name: タグ
   activemodel:
     attributes:
       hotel_form:
