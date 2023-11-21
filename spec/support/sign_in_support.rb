@@ -17,7 +17,7 @@ module SignInSupport
     fill_in 'user_password', with: user.password
     
     # ログインボタンを押す
-    find('input[name="commit"]').click
+    click_button("sign in")
 
     # トップページへ遷移することを確認する
     expect(page).to have_current_path(root_path)

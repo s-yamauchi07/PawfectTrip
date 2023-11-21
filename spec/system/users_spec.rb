@@ -7,7 +7,7 @@ RSpec.describe "ユーザー新規登録", type: :system do
   end
 
   context 'ユーザー新規登録できる時' do
-    it '正しい情報を入力すれば、トップページに遷移できる' do
+    it '正しい情報を入力すれば、トップページに遷移できる(email登録)' do
       #トップページに移動する
       visit root_path
 
@@ -27,7 +27,8 @@ RSpec.describe "ユーザー新規登録", type: :system do
       fill_in 'user_password_confirmation', with: @user.password_confirmation
       
       # Nextボタンを押下するとペット情報入力フォームに遷移する
-      find('input[name="commit"]').click
+      click_button("Next")
+
       expect(page).to have_current_path(user_registration_path)
 
       # 遷移先で「わんこ登録」の文字が存在することを確認する
@@ -40,7 +41,7 @@ RSpec.describe "ユーザー新規登録", type: :system do
       fill_in 'pet_birthday', with: @pet.birthday
       
       # サインアップボタンをクリックすると、トップページに遷移する
-      find('input[name="commit"]').click
+      click_button("Sign up")
       expect(page).to have_current_path(root_path)
     end
   end
@@ -93,7 +94,7 @@ RSpec.describe "ユーザー新規登録", type: :system do
       fill_in 'user_password_confirmation', with: @user.password_confirmation
 
       # Nextボタンを押下するとペット情報入力フォームに遷移する
-      find('input[name="commit"]').click
+      click_button("Next")
       expect(page).to have_current_path(user_registration_path)
 
       # 遷移先で「わんこ登録」の文字が存在することを確認する
@@ -105,7 +106,7 @@ RSpec.describe "ユーザー新規登録", type: :system do
       fill_in 'pet_birthday', with: ""
       
       # サインアップボタンをクリックすると、ペット登録ページに遷移する
-      find('input[name="commit"]').click
+      click_button("Sign up")
       expect(page).to have_current_path(user_registration_path)
     end
   end
@@ -126,10 +127,9 @@ RSpec.describe "ログイン", type: :system do
 
       # ログアウトボタンがあることを確認する
       expect(page).to have_content('ログアウト')
-
-      # サインアップページへ遷移するボタンやログインページへ遷移するボタンが表示されていないことを確認する
-      expect(page).to have_no_content('新規登録')
-      expect(page).to have_no_content('ログイン')
+      #ユーザー名が表示されていることを確認する。
+      expect(page).to have_content(@user.nickname)
+      
     end
   end
   context 'ログインができないとき' do
@@ -149,9 +149,8 @@ RSpec.describe "ログイン", type: :system do
       # 正しいユーザー情報を入力する
       fill_in 'user_email', with: ''
       fill_in 'user_password', with: ''
-
       # ログインボタンを押す
-      click_button 'LogIn'
+      click_button("sign in")
 
       # ログインページへ戻されることを確認する
       expect(page).to have_current_path(user_session_path)

@@ -11,7 +11,7 @@
 
                 <div class="mt-8">
                     <div class="mt-6">
-                        <%= form_with model: @user,  url: user_registration_path, local: true do |f| %>
+                        <%= form_with model: @user,  url: user_registration_path, id:"user-registration^form",local: true do |f| %>
                           <%= render "devise/shared/error_messages", resource: @user %>
                           <div class="form-control w-full mb-4">
                             <label class="label">
