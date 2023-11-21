@@ -24,17 +24,30 @@ ja:
         pet: 同行わんこ
         user: ユーザー
       plan/itineraries:
-          memo: メモ
-          date: 日付
-          place: スポット名
-          transportation_id: 交通手段
-          plan: 旅行日程
+        memo: メモ
+        date: 日付
+        place: スポット名
+        transportation_id: 交通手段
+        plan: 旅行日程
       itinerary:
-          memo: メモ
-          date: 日付
-          place: スポット名
-          transportation_id: 交通手段
-          plan: 旅行日程
+        memo: メモ
+        date: 日付
+        place: スポット名
+        transportation_id: 交通手段
+        plan: 旅行日程
+      comment:
+        comment: コメント
+        user: ユーザー
+        plan: 旅行日程
+      tag:
+        tag_name: タグ
+  activemodel:
+    attributes:
+      hotel_form:
+        hotel_num: ホテルNo
+        user_id: ユーザー
+
+
 
 
 
