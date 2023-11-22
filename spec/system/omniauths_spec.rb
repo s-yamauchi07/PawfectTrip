@@ -6,8 +6,10 @@ RSpec.describe "Omniauths", type: :system do
     Rails.application.env_config['omniauth.auth'] = set_omniauth
     @pet = FactoryBot.build(:pet)
   end
+
   context 'Google認証ができるとき' do
     it 'Google認証で新規登録ができるとき' do
+
       #トップページに移動する
       visit root_path
 
@@ -25,6 +27,7 @@ RSpec.describe "Omniauths", type: :system do
       expect(page).to have_current_path(user_google_oauth2_omniauth_callback_path)
       #Nextボタンをクリックする
       click_button("Next")
+
       # 遷移先で「わんこ登録」の文字が存在することを確認する
       expect(page).to have_content('わんこ登録')
 
@@ -40,6 +43,9 @@ RSpec.describe "Omniauths", type: :system do
     end
 
     it 'Google認証でログインができるとき' do
+      #予めmockデータと同じemailとnicknameでユーザーを登録する。
+      @sns_user = FactoryBot.create(:user, nickname:"John",email:"John@test.com")
+
       #トップページに移動する
       visit root_path
 
@@ -54,8 +60,6 @@ RSpec.describe "Omniauths", type: :system do
 
       #sign up with Googleのボタンをクリックする
       click_button("Log in with Google")
-      binding.pry
-      expect(page).to have_current_path(user_google_oauth2_omniauth_callback_path)
 
       # サインアップボタンをクリックすると、トップページに遷移する
       expect(page).to have_current_path(root_path)
