@@ -10,10 +10,16 @@ export default class extends Controller {
 
       const fileReader = new FileReader();
       fileReader.onload = (e) => {
+        const alreadyPreview = document.querySelector('.preview');
+        if (alreadyPreview) {
+          alreadyPreview.remove();
+        }
+        
         const dataURL = e.target.result;
         const blobImage = document.createElement('img')
         blobImage.setAttribute('src',dataURL);
         blobImage.setAttribute('style',"width: 100%");
+        blobImage.setAttribute('class',"preview");
         preview.append(blobImage)
       }
       fileReader.readAsDataURL(file)
