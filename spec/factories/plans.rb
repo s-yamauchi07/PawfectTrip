@@ -8,8 +8,8 @@ FactoryBot.define do
     companion_id     { Faker::Number.within(range: 2..6)}
     tag              { Faker::Lorem.words }
 
-    association :pet
     association :user
+    pet { association:pet, user:user}
 
     after(:build) do |plan|
       plan.cover_image.attach(io: File.open('public/images/test_image.jpg'), filename: 'test_image.jpg')
