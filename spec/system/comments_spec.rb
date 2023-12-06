@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe "Comments", type: :system do
   before do
     @plan = FactoryBot.create(:plan)
-    @pet = FactoryBot.create(:pet, user_id: @plan.user.id)
     @comment = FactoryBot.build(:comment)
+    sleep 1
   end
 
   describe "コメント新規登録" do
@@ -47,9 +47,9 @@ RSpec.describe "Comments", type: :system do
   describe "コメント編集" do
     before do
       @plan = FactoryBot.create(:plan)
-      @pet = FactoryBot.create(:pet, user_id: @plan.user.id)
       @comment = FactoryBot.create(:comment, plan_id: @plan.id)
       @comment2 = FactoryBot.create(:comment, plan_id: @plan.id)
+      sleep 1
     end
 
     context 'コメント編集できるとき' do
@@ -114,9 +114,9 @@ RSpec.describe "Comments", type: :system do
   describe "コメント削除" do
     before do
       @plan = FactoryBot.create(:plan)
-      @pet = FactoryBot.create(:pet, user_id: @plan.user.id)
       @comment = FactoryBot.create(:comment, plan_id: @plan.id)
       @comment2 = FactoryBot.create(:comment, plan_id: @plan.id)
+      sleep 1
     end
 
     context 'コメント削除できるとき' do
@@ -152,6 +152,7 @@ RSpec.describe "Comments", type: :system do
         # サインインページに遷移する
         expect(page).to have_current_path(new_user_session_path)
       end
+
       it '別のユーザーのコメントは削除できない' do
         # @commentを作成したユーザーでログインする
         sign_in(@comment.user)
