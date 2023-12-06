@@ -15,9 +15,6 @@ RSpec.describe "Plans", type: :system do
         #ログインする
         sign_in(@user)
   
-        #メニューアイコンをクリックする
-        find('.header-icon').click
-  
         # 日程作成ボタンがあることを確認する
         expect(page).to have_content('日程作成')
   
@@ -80,9 +77,6 @@ RSpec.describe "Plans", type: :system do
       it '必須項目が空白の場合は、新規登録ができない' do
         #ログインする
         sign_in(@user)
-        
-        #メニューアイコンをクリックする
-        find('.header-icon').click
   
         # 日程作成ボタンがあることを確認する
         expect(page).to have_content('日程作成')
