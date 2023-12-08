@@ -67,7 +67,7 @@ export default class extends Controller {
       const altImageUrl = "/images/no_image.png";
   
       const html = `
-      <li>
+      <li class="hotel-card">
         <a href="/hotels/${hotelNum}" data-turbolinks="false">
         <div class="card max-w-sm bg-base-100 shadow-xl">
           <div class="relative">
