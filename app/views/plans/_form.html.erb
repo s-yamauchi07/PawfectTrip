@@ -4,11 +4,20 @@
         <%= render "shared/error_messages", resource: f.object %>
 
           <div class="form-control w-full mb-2" data-controller="preview-image">
-            <div data-preview-image-target="image w-full"></div>
-            <label class="label">
-              <span class="label-text font-semibold text-base">表紙画像</span>
-            </label>
-            <%= f.file_field :cover_image, autofocus: true, class:"file-input file-input-bordered file-input-primary w-full", "data-action":"click->preview-image#preview", "data-preview-image-target":"file"%>
+            
+            <% if plan.cover_image.present? %>
+              <%= f.label :cover_image do %>
+              <div data-preview-image-target="image w-full"></div>
+              <%= image_tag plan.cover_image, class:"preview" %>
+                <%= f.file_field :cover_image, autofocus: true, class:"hidden", "data-action":"click->preview-image#preview", "data-preview-image-target":"file"%>
+              <% end %>
+            <% else %>
+              <label class="label">
+                <span class="label-text font-semibold text-base">表紙画像</span>
+              </label>
+              <div data-preview-image-target="image w-full"></div>
+              <%= f.file_field :cover_image, autofocus: true, class:"file-input file-input-bordered file-input-primary w-full", "data-action":"click->preview-image#preview", "data-preview-image-target":"file"%>
+            <% end %>
           </div>   
 
           <div class="form-control w-full mb-2">
