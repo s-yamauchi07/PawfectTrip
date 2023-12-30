@@ -51,7 +51,7 @@ test:
 production:
   <<: *default
   database: PawfectTrip_production
-  username: PawfectTrip
+  username: root
   adapter: mysql2
   url: <%= ENV['DATABASE_URL'] %>
   password: <%= ENV["PAWFECTTRIP_DATABASE_PASSWORD"] %>
