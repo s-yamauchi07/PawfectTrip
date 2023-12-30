@@ -52,7 +52,7 @@ production:
   <<: *default
   database: PawfectTrip_production
   username: PawfectTrip
-  adapter: postgresql
+  adapter: mysql
   url: <%= ENV['DATABASE_URL'] %>
   password: <%= ENV["PAWFECTTRIP_DATABASE_PASSWORD"] %>
   socket: /var/lib/mysql/mysql.sock
