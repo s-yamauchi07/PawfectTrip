@@ -84,7 +84,7 @@
                         <div>
                           <span class="text-sm text-gray-500"><%= l Plan.find(plan.plan_id).departure_date, format: :short%>-<%= l Plan.find(plan.plan_id).return_date, format: :short %></span>
                           <p class="mt-3 text-lg font-medium leading-6">
-                            <%= link_to Plan.find(plan.plan_id).title, plan_path(plan), class:"text-xl text-gray-800 group-hover:text-gray-500 lg:text-2xl"%>
+                            <%= link_to Plan.find(plan.plan_id).title, plan_path(plan.plan_id), class:"text-xl text-gray-800 group-hover:text-gray-500 lg:text-2xl"%>
                           </p>
                           <div class="mt-2 text-base text-gray-500 flex items-center">
                             <span><%= Prefecture.find(Plan.find(plan.plan_id).departure_id).name %></span>
