@@ -8,6 +8,9 @@ set :branch, 'main'
 set :rbenv_type, :user
 set :rbenv_ruby, '3.2.0'
 
+# pumaの起動用の記載
+set :puma_service_unit_name, 'puma.service'
+
 # Default value for :linked_files is []
 # append :linked_files, "config/database.yml", 'config/master.key'
 append :linked_files, "config/master.key"
