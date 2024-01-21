@@ -408,7 +408,7 @@ DEPENDENCIES
   rails-i18n
   rakuten_web_service
   ransack
-  redis (~> 4.0)
+  redis
   rspec-rails
   selenium-webdriver
   sprockets-rails
