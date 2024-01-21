@@ -296,6 +296,7 @@ GEM
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
       i18n
+    redis (4.8.1)
     regexp_parser (2.8.1)
     reline (0.3.8)
       io-console (~> 0.5)
@@ -407,6 +408,7 @@ DEPENDENCIES
   rails-i18n
   rakuten_web_service
   ransack
+  redis (~> 4.0)
   rspec-rails
   selenium-webdriver
   sprockets-rails
