@@ -11,6 +11,9 @@ set :rbenv_ruby, '3.2.0'
 # pumaの起動用の記載
 set :puma_service_unit_name, 'puma.service'
 
+# nginxの設定
+set :nginx_config_name, 'pawfect-trip.com'
+
 # Default value for :linked_files is []
 # append :linked_files, "config/database.yml", 'config/master.key'
 append :linked_files, "config/master.key"
