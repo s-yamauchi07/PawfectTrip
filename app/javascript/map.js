@@ -3,7 +3,11 @@ let geocoder;
 let marker = [];
 let infoWindow = [];
 
-const initMap = () => {
+
+function initMap() {
+  const mapContent = document.getElementById('map')
+  if(!mapContent) return null;
+
   const spots = gon.spots;
   const hotel = gon.hotel;
   
@@ -13,7 +17,7 @@ const initMap = () => {
   // 初期値を設定
   const tokyoStation = { lat:35.6814104752183, lng:139.76721062882686};
 
-  let map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById('map'), {
     center: tokyoStation,
     zoom: 8
   });
@@ -97,4 +101,6 @@ const initMap = () => {
 
 }
 
-window.addEventListener('turbo:load', initMap);
+document.addEventListener('turbo:load', () => {
+  initMap();
+});
