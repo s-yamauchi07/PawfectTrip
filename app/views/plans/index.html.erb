@@ -1,7 +1,9 @@
 <div class="lg:flex">
     <div class="w-full h-64 lg:w-1/2 lg:h-auto">
-        <div class="w-full h-full bg-cover bg-center" style="background-image: url(<%= asset_path 'first_view.png' %>)">
-            <div class="w-full h-full bg-black opacity-20"></div>
+        <div class="w-full h-full bg-cover bg-center">
+            <div class="w-full h-full bg-black opacity-20">
+              <%= image_tag('first_view.png', class:"w-full h-full") %>
+            </div>
         </div>
     </div>
 
