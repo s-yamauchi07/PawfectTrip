@@ -19,7 +19,8 @@ set :nginx_config_name, 'pawfect-trip.com'
 append :linked_files, "config/master.key"
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "vendor", "storage"
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets",  '.bundle'
+#sharedディレクトリに格納するファイルを指定する。
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads",'.bundle'
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
