@@ -53,7 +53,6 @@ production:
   database: PawfectTrip_production
   username: root
   adapter: mysql2
-  url: <%= ENV['DATABASE_URL'] %>
   password: <%= ENV["PAWFECTTRIP_DATABASE_PASSWORD"] %>
   socket: /var/lib/mysql/mysql.sock
   host: <%= ENV["RDS_ENDPOINT"] %>
