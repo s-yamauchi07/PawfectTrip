@@ -52,5 +52,6 @@ test:
 production:
   <<: *default
   database: PawfectTrip_production
+  username: root
   password: <%= ENV["PAWFECTTRIP_DATABASE_PASSWORD"] %>
   host: <%= ENV["RDS_ENDPOINT"] %>
