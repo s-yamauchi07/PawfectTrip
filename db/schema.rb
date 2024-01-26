@@ -115,7 +115,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_14_032152) do
     t.integer "destination_id", null: false
     t.integer "companion_id", null: false
     t.bigint "pet_id", null: false
-    t.string "tag"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
