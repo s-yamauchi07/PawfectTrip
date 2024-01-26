@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.18.0"
+lock "3.18.0"
 
 set :application, "PawfectTrip"
 set :repo_url,  'git@github.com:s-yamauchi07/PawfectTrip'
