@@ -57,4 +57,3 @@ production:
   password: <%= ENV["PAWFECTTRIP_DATABASE_PASSWORD"] %>
   host: <%= ENV["RDS_ENDPOINT"] %>
   port: <%= ENV["RDS_PORT"] %>
-  socket: /var/lib/mysql/mysql.sock
