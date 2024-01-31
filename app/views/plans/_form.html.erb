@@ -1,115 +1,113 @@
-  <div class="flex justify-center items-center">
-    <%= form_with(model:plan, local:true, class:"artboard artboard-horizontal phone-1") do |f| %>
-      <%= turbo_frame_tag plan do %>
-        <%= render "shared/error_messages", resource: f.object %>
+<div class="flex justify-center items-center">
+  <%= form_with(model:plan, local:true, class:"artboard artboard-horizontal phone-1") do |f| %>
+    <%= turbo_frame_tag plan do %>
+      <%= render "shared/error_messages", resource: f.object %>
 
-          <div class="form-control w-full mb-2" data-controller="preview-image">
-            
-            <% if plan.cover_image.present? %>
-              <%= f.label :cover_image do %>
-              <div data-preview-image-target="image w-full"></div>
-              <%= image_tag plan.cover_image, class:"preview" %>
-                <%= f.file_field :cover_image, autofocus: true, class:"hidden", "data-action":"click->preview-image#preview", "data-preview-image-target":"file"%>
-              <% end %>
-            <% else %>
-              <label class="label">
-                <span class="label-text font-semibold text-base">表紙画像</span>
-              </label>
-              <div data-preview-image-target="image w-full"></div>
-              <%= f.file_field :cover_image, autofocus: true, class:"file-input file-input-bordered file-input-primary w-full", "data-action":"click->preview-image#preview", "data-preview-image-target":"file"%>
-            <% end %>
-          </div>   
-
-          <div class="form-control w-full mb-2">
-            <label class="label">
-              <span class="label-text font-semibold text-base">タイトル</span>
-              <span class="label-text-alt bg-red-400 p-1 rounded-lg text-white">必須</span>
-            </label>
-            <%= f.text_field :title, autofocus: true, placeholder:"例:京都旅行",class:"input input-bordered w-full"%>
-          </div>
-
-          <div class="trip-date flex">
-            <div class="form-control w-6/12 max-w-xs mb-2">
-              <label class="label">
-                <span class="label-text font-semibold text-base">出発日</span>
-                <span class="label-text-alt bg-red-400 p-1 rounded-lg text-white">必須</span>
-              </label>
-              <%= f.date_field :departure_date, autofocus: true,class:"input input-bordered w-full max-w-xs"%>
-            </div>
-            <div class="form-control w-6/12 max-w-xs mb-2">
-              <label class="label">
-                <span class="label-text font-semibold text-base">帰着日</span>
-                <span class="label-text-alt bg-red-400 p-1 rounded-lg text-white">必須</span>
-              </label>
-              <%= f.date_field :return_date, autofocus: true,class:"input input-bordered w-full max-w-xs"%>
-            </div>
-          </div>
-
-          <div class="trip-area flex">
-            <div class="form-control w-full max-w-xs mb-2">
-              <label class="label">
-                <span class="label-text font-semibold text-base">出発地</span>
-                <span class="label-text-alt bg-red-400 p-1 rounded-lg text-white">必須</span>
-              </label>
-              <%= f.collection_select(:departure_id, Prefecture.all, :id, :name,{prompt: ""},{class:"input input-bordered w-full max-w-xs"})%>
-            </div>
-
-            <div class="form-control w-full max-w-xs mb-2">
-              <label class="label">
-                <span class="label-text font-semibold text-base">目的地</span>
-                <span class="label-text-alt bg-red-400 p-1 rounded-lg text-white">必須</span>
-              </label>
-              <%= f.collection_select(:destination_id, Prefecture.all, :id, :name,{prompt: ""}, {class:"input input-bordered w-full max-w-xs"}) %>
-            </div>
-          </div>
-
-          <div class="form-control w-full mb-2">
-            <label class="label">
-              <span class="label-text font-semibold text-base">同伴者</span>
-              <span class="label-text-alt bg-red-400 p-1 rounded-lg text-white">必須</span>
-            </label>
-            <%= f.collection_select(:companion_id, Companion.all, :id, :name,{prompt: ""}, {class:"input input-bordered w-full"}) %>
-          </div>
-
-          <div class="w-full mb-2">
-            <label class="label cursor-pointer">
-              <span class="label-text font-semibold text-base">同行わんこ</span>
-              <span class="label-text-alt bg-red-400 p-1 rounded-lg text-white">必須</span>
-            </label>
-            <%= f.collection_radio_buttons(:pet_id, current_user.pets.order(:name), :id, :name, { checked: nil, include_hidden: false}, {class:"radio radio-primary"}) %>
-          </div>
-
-          <div class="form-control w-full mb-2">
-            <label class="label">
-              <span class="label-text font-semibold text-base">タグ</span>
-            </label>
-            <%= f.text_field :tag_names, autofocus: true, placeholder:"例:グランピング ドッグラン", class:"input input-bordered w-full"%>
-            <span class="text-gray-400">※複数タグを登録する場合は、スペースで区切って入力してください</span>
-          </div>
-        <% end %>
+        <div class="form-control w-full mb-2" data-controller="preview-image">
           
-        <div id="add_fields_area"></div>
-        <div class="text-right">
-          <div class="btn btn-warning btn-sm">
-            <%= link_to_add_association '＋行程追加', f,:itineraries,
-              data: {
-                association_insertion_node: "#add_fields_area",
-                association_insertioin_method: "before"
-              }
-            %>
+          <% if plan.cover_image.present? %>
+            <%= f.label :cover_image do %>
+            <div data-preview-image-target="image w-full"></div>
+            <%= image_tag plan.cover_image, class:"preview" %>
+              <%= f.file_field :cover_image, autofocus: true, class:"hidden", "data-action":"click->preview-image#preview", "data-preview-image-target":"file"%>
+            <% end %>
+          <% else %>
+            <label class="label">
+              <span class="label-text font-semibold text-base">表紙画像</span>
+            </label>
+            <div data-preview-image-target="image w-full"></div>
+            <%= f.file_field :cover_image, autofocus: true, class:"file-input file-input-bordered file-input-primary w-full", "data-action":"click->preview-image#preview", "data-preview-image-target":"file"%>
+          <% end %>
+        </div>   
+
+        <div class="form-control w-full mb-2">
+          <label class="label">
+            <span class="label-text font-semibold text-base">タイトル</span>
+            <span class="label-text-alt bg-red-400 p-1 rounded-lg text-white">必須</span>
+          </label>
+          <%= f.text_field :title, autofocus: true, placeholder:"例:京都旅行",class:"input input-bordered w-full"%>
+        </div>
+
+        <div class="trip-date flex">
+          <div class="form-control w-6/12 max-w-xs mb-2">
+            <label class="label">
+              <span class="label-text font-semibold text-base">出発日</span>
+              <span class="label-text-alt bg-red-400 p-1 rounded-lg text-white">必須</span>
+            </label>
+            <%= f.date_field :departure_date, autofocus: true,class:"input input-bordered w-full max-w-xs"%>
+          </div>
+          <div class="form-control w-6/12 max-w-xs mb-2">
+            <label class="label">
+              <span class="label-text font-semibold text-base">帰着日</span>
+              <span class="label-text-alt bg-red-400 p-1 rounded-lg text-white">必須</span>
+            </label>
+            <%= f.date_field :return_date, autofocus: true,class:"input input-bordered w-full max-w-xs"%>
           </div>
         </div>
 
-        <%= f.fields_for :itineraries do | itinerary | %>
-          <%= render partial: "plans/itinerary_fields", locals: {f: itinerary} %>
-        <% end %>
+        <div class="trip-area flex">
+          <div class="form-control w-full max-w-xs mb-2">
+            <label class="label">
+              <span class="label-text font-semibold text-base">出発地</span>
+              <span class="label-text-alt bg-red-400 p-1 rounded-lg text-white">必須</span>
+            </label>
+            <%= f.collection_select(:departure_id, Prefecture.all, :id, :name,{prompt: ""},{class:"input input-bordered w-full max-w-xs"})%>
+          </div>
 
-        
-
-        <div class="actions mt-4 text-center">
-          <%= f.submit "日程保存", class:"btn btn-primary" %>
+          <div class="form-control w-full max-w-xs mb-2">
+            <label class="label">
+              <span class="label-text font-semibold text-base">目的地</span>
+              <span class="label-text-alt bg-red-400 p-1 rounded-lg text-white">必須</span>
+            </label>
+            <%= f.collection_select(:destination_id, Prefecture.all, :id, :name,{prompt: ""}, {class:"input input-bordered w-full max-w-xs"}) %>
+          </div>
         </div>
-    <% end %>
-  </div>
-  <script async src="https://maps.googleapis.com/maps/api/js?key=<%="#{ENV['GOOGLE_MAPS_API']}"%>&libraries=places">
-</script>
+
+        <div class="form-control w-full mb-2">
+          <label class="label">
+            <span class="label-text font-semibold text-base">同伴者</span>
+            <span class="label-text-alt bg-red-400 p-1 rounded-lg text-white">必須</span>
+          </label>
+          <%= f.collection_select(:companion_id, Companion.all, :id, :name,{prompt: ""}, {class:"input input-bordered w-full"}) %>
+        </div>
+
+        <div class="w-full mb-2">
+          <label class="label cursor-pointer">
+            <span class="label-text font-semibold text-base">同行わんこ</span>
+            <span class="label-text-alt bg-red-400 p-1 rounded-lg text-white">必須</span>
+          </label>
+          <%= f.collection_radio_buttons(:pet_id, current_user.pets.order(:name), :id, :name, { checked: nil, include_hidden: false}, {class:"radio radio-primary"}) %>
+        </div>
+
+        <div class="form-control w-full mb-2">
+          <label class="label">
+            <span class="label-text font-semibold text-base">タグ</span>
+          </label>
+          <%= f.text_field :tag_names, autofocus: true, placeholder:"例:グランピング ドッグラン", class:"input input-bordered w-full"%>
+          <span class="text-gray-400">※複数タグを登録する場合は、スペースで区切って入力してください</span>
+        </div>
+      <% end %>
+        
+      <div id="add_fields_area"></div>
+      <div class="text-right">
+        <div class="btn btn-warning btn-sm">
+          <%= link_to_add_association '＋行程追加', f,:itineraries,
+            data: {
+              association_insertion_node: "#add_fields_area",
+              association_insertioin_method: "before"
+            }
+          %>
+        </div>
+      </div>
+
+      <%= f.fields_for :itineraries do | itinerary | %>
+        <%= render partial: "plans/itinerary_fields", locals: {f: itinerary} %>
+      <% end %>
+
+      
+
+      <div class="actions mt-4 text-center">
+        <%= f.submit "日程保存", class:"btn btn-primary" %>
+      </div>
+  <% end %>
+</div>

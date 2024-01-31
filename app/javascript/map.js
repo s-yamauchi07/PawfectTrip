@@ -4,7 +4,9 @@ let marker = [];
 let infoWindow = [];
 
 
-function initMap() {
+async function initMap() {
+  const { Map } = await google.maps.importLibrary("maps");
+
   const mapContent = document.getElementById('map')
   if(!mapContent) return null;
 
@@ -17,7 +19,7 @@ function initMap() {
   // 初期値を設定
   const tokyoStation = { lat:35.6814104752183, lng:139.76721062882686};
 
-  map = new google.maps.Map(document.getElementById('map'), {
+  map = new Map(document.getElementById("map"), {
     center: tokyoStation,
     zoom: 8
   });
@@ -101,6 +103,4 @@ function initMap() {
 
 }
 
-document.addEventListener('turbo:load', () => {
-  initMap();
-});
+document.addEventListener('turbo:load', initMap());

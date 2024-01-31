@@ -2,3 +2,5 @@
     <h1 class="text-2xl text-center">旅行更新</h1>
     <%= render partial:"form", locals: {plan: @plan}%>
 </div>
+<script async src="https://maps.googleapis.com/maps/api/js?key=<%="#{ENV['GOOGLE_MAPS_API']}"%>&libraries=places">
+</script>
