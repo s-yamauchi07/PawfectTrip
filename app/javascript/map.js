@@ -5,11 +5,11 @@ let infoWindow = [];
 
 
 async function initMap() {
-  const { Map } = await google.maps.importLibrary("maps");
-
+  
   const mapContent = document.getElementById('map')
   if(!mapContent) return null;
-
+  
+  const { Map } = await google.maps.importLibrary("maps");
   const spots = gon.spots;
   const hotel = gon.hotel;
   
