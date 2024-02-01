@@ -95,5 +95,5 @@ Rails.application.configure do
   # nginxでもAction Cableを使用できるように設定
   ActionCable.server.config.disable_request_forgery_protection = true
   config.action_cable.allowed_request_origins = [ 'http://pawfect-trip.com/' ]
-  config.action_cable.url = 'ws://http://pawfect-trip.com/cable'
+  config.action_cable.url = 'ws://pawfect-trip.com/cable'
 end
