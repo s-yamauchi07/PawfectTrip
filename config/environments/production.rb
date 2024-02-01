@@ -91,4 +91,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # nginxでもAction Cableを使用できるように設定
+  ActionCable.server.config.disable_request_forgery_protection = true
+  config.action_cable.allowed_request_origins = [ 'http://pawfect-trip.com/' ]
+  config.action_cable.url = 'ws://http://pawfect-trip.com/cable'
 end
