@@ -39,17 +39,17 @@ RSpec.describe Plan, type: :model do
         expect(@plan.errors.full_messages).to include("帰着日を入力してください")
       end
       it '出発地が未選択の場合' do
-        @plan.departure_id = 1
+        @plan.departure_id = nil
         @plan.valid?
         expect(@plan.errors.full_messages).to include("出発地を選択してください")
       end
       it '目的地が未選択の場合' do
-        @plan.destination_id = 1
+        @plan.destination_id = nil
         @plan.valid?
         expect(@plan.errors.full_messages).to include("目的地を選択してください")
       end
       it '同伴者が未選択の場合' do
-        @plan.companion_id = 1
+        @plan.companion_id = nil
         @plan.valid?
         expect(@plan.errors.full_messages).to include("同伴者を選択してください")
       end
