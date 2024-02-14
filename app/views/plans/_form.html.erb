@@ -16,7 +16,7 @@
               <span class="label-text font-semibold text-base">表紙画像</span>
             </label>
             <div data-preview-image-target="image w-full"></div>
-            <%= f.file_field :cover_image, autofocus: true, class:"file-input file-input-bordered file-input-primary w-full", "data-action":"click->preview-image#preview", "data-preview-image-target":"file"%>
+              <%= f.file_field :cover_image, autofocus: true, class:"file-input file-input-bordered file-input-primary w-full", "data-action":"click->preview-image#preview", "data-preview-image-target":"file"%>
           <% end %>
         </div>   
 
@@ -51,7 +51,7 @@
               <span class="label-text font-semibold text-base">出発地</span>
               <span class="label-text-alt bg-red-400 p-1 rounded-lg text-white">必須</span>
             </label>
-            <%= f.collection_select(:departure_id, Prefecture.all, :id, :name,{prompt: ""},{class:"input input-bordered w-full max-w-xs"})%>
+            <%= f.collection_select(:departure_id, Prefecture.all, :id, :name,{include_blank: "出発地を選択"},{class:"input input-bordered w-full max-w-xs"})%>
           </div>
 
           <div class="form-control w-full max-w-xs mb-2">
@@ -59,7 +59,7 @@
               <span class="label-text font-semibold text-base">目的地</span>
               <span class="label-text-alt bg-red-400 p-1 rounded-lg text-white">必須</span>
             </label>
-            <%= f.collection_select(:destination_id, Prefecture.all, :id, :name,{prompt: ""}, {class:"input input-bordered w-full max-w-xs"}) %>
+            <%= f.collection_select(:destination_id, Prefecture.all, :id, :name,{include_blank: "目的地を選択"}, {class:"input input-bordered w-full max-w-xs"}) %>
           </div>
         </div>
 
@@ -68,7 +68,7 @@
             <span class="label-text font-semibold text-base">同伴者</span>
             <span class="label-text-alt bg-red-400 p-1 rounded-lg text-white">必須</span>
           </label>
-          <%= f.collection_select(:companion_id, Companion.all, :id, :name,{prompt: ""}, {class:"input input-bordered w-full"}) %>
+          <%= f.collection_select(:companion_id, Companion.all, :id, :name,{include_blank: "同伴者を選択"}, {class:"input input-bordered w-full"}) %>
         </div>
 
         <div class="w-full mb-2">

@@ -5,6 +5,7 @@
 
   <div data-controller="search-hotel" class="mx-auto max-w-screen-2xl px-4 md:px-8 ">
     <select data-action="change->search-hotel#search" data-search-hotel-target="prefecture" id="prefecture" class="input input-bordered w-full max-w-xs block mx-auto mb-4 md:mb-8">
+      <option value="">都道府県を選択</option>
       <% Prefecture.all.each do |city| %>
         <option value="<%= city.name %>"><%= city.name %></option>
       <% end %>
