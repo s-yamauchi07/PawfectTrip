@@ -4,14 +4,14 @@
       <label class="label">
         <span class="label-text font-semibold text-base">出発地</span>
       </label>
-      <%= f.collection_select(:departure_id_eq, Prefecture.all, :id, :name,{prompt: ""},{class:"input input-bordered w-full max-w-xs"})%>
+      <%= f.collection_select(:departure_id_eq, Prefecture.all, :id, :name,{include_blank: "出発地を選択"},{class:"input input-bordered w-full max-w-xs"})%>
     </div>
 
     <div class="form-control w-full max-w-xs mb-2">
       <label class="label">
         <span class="label-text font-semibold text-base">目的地</span>
       </label>
-      <%= f.collection_select(:destination_id_eq, Prefecture.all, :id, :name,{prompt: ""}, {class:"input input-bordered w-full max-w-xs"}) %>
+      <%= f.collection_select(:destination_id_eq, Prefecture.all, :id, :name,{include_blank: "目的地の選択"}, {class:"input input-bordered w-full max-w-xs"}) %>
     </div>
 
     <div class="form-control w-full max-w-xs mb-2">
