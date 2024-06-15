@@ -103,4 +103,18 @@ async function initMap() {
 
 }
 
-document.addEventListener('turbo:load', initMap());
+// Turboイベントリスナーを追加
+document.addEventListener('turbo:load', () => {
+  if (!document.getElementById('map')) return;
+  
+  if (!window.google || !window.google.maps) {
+    const intervalId = setInterval(() => {
+      if (window.google && window.google.maps) {
+        initMap();
+        clearInterval(intervalId);
+      }
+    }, 100);
+  } else {
+    initMap();
+  }
+});
