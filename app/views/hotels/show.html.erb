@@ -1,8 +1,9 @@
 <% include_gon %>
 <section class="text-gray-600 body-font overflow-hidden">
   <div class="container px-5 py-24 mx-auto">
+  <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">宿詳細</h2>
     <div class="lg:w-4/5 mx-auto flex flex-wrap">
-      <img alt="hotel_image" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="<%= @hotel_info["hotelImageUrl"] %>">
+      <img alt="hotel_image" class="lg:w-1/2 w-full h-72 object-fill object-center rounded" src="<%= @hotel_info["hotelImageUrl"] %>">
       <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
         <h2 class="text-sm title-font text-gray-500 tracking-widest"><%= @hotel_info["hotelKanaName"]%></h2>
         <h1 class="text-gray-900 text-3xl title-font font-medium mb-1"><%= @hotel_info["hotelName"] %></h1>
@@ -40,67 +41,67 @@
 
 <!--  レビューエリア -->
 <section>
-  <div class="container px-5 py-24 mx-auto text-center">
-    <h2>カスタマーレビュー</h2>
-    <div class="stats shadow lg:w-4/5">
-      <div class="stat">
+  <div class="container px-5 py-24 mx-auto text-center flex flex-col items-center">
+    <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">カスタマーレビュー</h2>
+    <div class="stats shadow w-full flex flex-col lg:flex-row lg:w-4/5">
+      <div class="stat w-full lg:w-1/6 p-2">
         <div class="stat-title">サービス全体</div>
-          <div class="flex items-center">
+          <div class="flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
             </svg>
-            <div class="stat-value"><%= number_with_precision(@hotel_rating["serviceAverage"], precision: 2)%></div>
+            <div class="stat-value text-xl lg:text-2xl"><%= number_with_precision(@hotel_rating["serviceAverage"], precision: 2)%></div>
           </div>
           
       </div>
 
-      <div class="stat">
+      <div class="stat w-full lg:w-1/6 p-2">
         <div class="stat-title">立地</div>
-          <div class="flex items-center">
+          <div class="flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
             </svg>
-            <div class="stat-value"><%= number_with_precision(@hotel_rating["locationAverage"], precision: 2)%></div>
+            <div class="stat-value text-xl lg:text-2xl"><%= number_with_precision(@hotel_rating["locationAverage"], precision: 2)%></div>
           </div>
       </div>
 
-      <div class="stat">
+      <div class="stat w-full lg:w-1/6 p-2">
         <div class="stat-title">部屋</div>
-          <div class="flex items-center">
+          <div class="flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
             </svg>
-            <div class="stat-value"><%= number_with_precision(@hotel_rating["roomAverage"], precision: 2)%></div>
+            <div class="stat-value text-xl lg:text-2xl"><%= number_with_precision(@hotel_rating["roomAverage"], precision: 2)%></div>
           </div>
       </div>
 
-      <div class="stat">
-        <div class="stat-title">設備・アメニティ</div>
-          <div class="flex items-center">
+      <div class="stat w-full lg:w-1/6 p-2">
+        <div class="stat-title">設備</div>
+          <div class="flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
             </svg>
-            <div class="stat-value"><%= number_with_precision(@hotel_rating["equipmentAverage"], precision: 2)%></div>
+            <div class="stat-value text-xl lg:text-2xl"><%= number_with_precision(@hotel_rating["equipmentAverage"], precision: 2)%></div>
           </div>
       </div>
 
-      <div class="stat">
+      <div class="stat w-full lg:w-1/6 p-2">
         <div class="stat-title">風呂</div>
-          <div class="flex items-center">
+          <div class="flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
             </svg>
-            <div class="stat-value"><%= number_with_precision(@hotel_rating["bathAverage"], precision: 2)%></div>
+            <div class="stat-value text-xl lg:text-2xl"><%= number_with_precision(@hotel_rating["bathAverage"], precision: 2)%></div>
           </div>
       </div>
 
-      <div class="stat">
+      <div class="stat w-full lg:w-1/6 p-2">
         <div class="stat-title">食事</div>
-          <div class="flex items-center">
+          <div class="flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
             </svg>
-            <div class="stat-value"><%= number_with_precision(@hotel_rating["mealAverage"], precision: 2)%></div>
+            <div class="stat-value text-xl lg:text-2xl"><%= number_with_precision(@hotel_rating["mealAverage"], precision: 2)%></div>
           </div>
       </div>
     </div>
@@ -110,9 +111,9 @@
 <!-- 詳細エリア-->
 <section>
   <div class="container px-5 py-24 mx-auto text-gray-600 body-font relative">
-    <h2>住所</h2>
 
-    <div class="container px-5 py-24 mx-auto flex sm:flex-nowrap flex-wrap lg:w-4/5">
+    <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">住所</h2>
+    <div class="container px-5 mx-auto flex sm:flex-nowrap flex-wrap lg:w-4/5">
       <div class="bg-white relative py-6 rounded shadow-md lg:w-1/2">
         <div class="lg:w-full px-6">
           <h2 class="title-font font-semibold text-gray-900 tracking-widest text-xs">ADDRESS</h2>
@@ -129,7 +130,7 @@
           <a class="leading-relaxed"><%= @hotel_info["parkingInformation"]%></a>
         </div>
       </div>
-      <div id="map" class="lg:w-2/3 md:w-1/2 bg-gray-600 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative">
+      <div id="map" class="w-full lg:w-2/3 bg-gray-600 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative h-72 md:h-auto">
       </div>
     </div>
 </section>
