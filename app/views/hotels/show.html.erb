@@ -1,8 +1,9 @@
 <% include_gon %>
 <section class="text-gray-600 body-font overflow-hidden">
   <div class="container px-5 py-24 mx-auto">
+  <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">宿詳細</h2>
     <div class="lg:w-4/5 mx-auto flex flex-wrap">
-      <img alt="hotel_image" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="<%= @hotel_info["hotelImageUrl"] %>">
+      <img alt="hotel_image" class="lg:w-1/2 w-full h-72 object-fill object-center rounded" src="<%= @hotel_info["hotelImageUrl"] %>">
       <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
         <h2 class="text-sm title-font text-gray-500 tracking-widest"><%= @hotel_info["hotelKanaName"]%></h2>
         <h1 class="text-gray-900 text-3xl title-font font-medium mb-1"><%= @hotel_info["hotelName"] %></h1>
@@ -41,7 +42,7 @@
 <!--  レビューエリア -->
 <section>
   <div class="container px-5 py-24 mx-auto text-center">
-    <h2>カスタマーレビュー</h2>
+    <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">カスタマーレビュー</h2>
     <div class="stats shadow lg:w-4/5">
       <div class="stat">
         <div class="stat-title">サービス全体</div>
@@ -110,9 +111,9 @@
 <!-- 詳細エリア-->
 <section>
   <div class="container px-5 py-24 mx-auto text-gray-600 body-font relative">
-    <h2>住所</h2>
 
-    <div class="container px-5 py-24 mx-auto flex sm:flex-nowrap flex-wrap lg:w-4/5">
+    <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">住所</h2>
+    <div class="container px-5 mx-auto flex sm:flex-nowrap flex-wrap lg:w-4/5">
       <div class="bg-white relative py-6 rounded shadow-md lg:w-1/2">
         <div class="lg:w-full px-6">
           <h2 class="title-font font-semibold text-gray-900 tracking-widest text-xs">ADDRESS</h2>
