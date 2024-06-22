@@ -48,7 +48,7 @@ class Plan < ApplicationRecord
 
   def check_image
     unless self.cover_image.attached?
-      self.cover_image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'cover_image.png')), filename: 'cover-image.png', content_type: 'image/png')
+      self.cover_image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'cover_image.png')), filename: 'cover_image.png', content_type: 'image/png')
     end
   end
 
