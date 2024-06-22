@@ -38,6 +38,8 @@ class PlansController < ApplicationController
 
   def update
     if @plan.update(plan_params)
+      tags = params[:plan][:tag_names].split.uniq
+      @plan.update_tags(tags)
       redirect_to plan_path(@plan)
     else
       render :edit, status: :unprocessable_entity

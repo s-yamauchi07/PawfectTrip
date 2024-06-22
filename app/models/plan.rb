@@ -36,6 +36,16 @@ class Plan < ApplicationRecord
     end
   end
 
+  def update_tags(update_tags)
+    # 現在のタグを削除
+    self.tags.destroy_all
+
+    update_tags.each do |tag_name|
+      new_tag = Tag.find_or_create_by(tag_name: tag_name)
+      self.tags << new_tag
+    end
+  end
+
   def check_image
     unless self.cover_image.attached?
       self.cover_image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'cover_image.png')), filename: 'cover-image.png', content_type: 'image/png')
