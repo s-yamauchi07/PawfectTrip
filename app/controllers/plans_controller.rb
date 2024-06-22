@@ -27,7 +27,7 @@ class PlansController < ApplicationController
   def show
     gon.spots = @plan.itineraries
     # @planに紐づくitinerariesを日付でグループ分けする
-    @itineraries = @plan.itineraries.all.group_by { |itinerary| itinerary.date.strftime("%m/%d")}
+    @itineraries = @plan.itineraries.order(:date).group_by { |itinerary| itinerary.date.strftime("%m/%d")}
     @unique_date = @itineraries.keys.group_by {|date| date}.sort
     @comment = Comment.new
     @comments = @plan.comments.includes(:user)
@@ -38,6 +38,8 @@ class PlansController < ApplicationController
 
   def update
     if @plan.update(plan_params)
+      tags = params[:plan][:tag_names].split.uniq
+      @plan.update_tags(tags)
       redirect_to plan_path(@plan)
     else
       render :edit, status: :unprocessable_entity
