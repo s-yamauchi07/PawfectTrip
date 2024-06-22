@@ -20,6 +20,8 @@ class PlansController < ApplicationController
     if @plan.save
       redirect_to root_path
     else
+      # 添付画像のリセット
+      @plan.cover_image = nil
       render :new, status: :unprocessable_entity
     end
   end
