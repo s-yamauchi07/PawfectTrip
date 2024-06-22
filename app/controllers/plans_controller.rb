@@ -28,7 +28,6 @@ class PlansController < ApplicationController
     gon.spots = @plan.itineraries
     # @planに紐づくitinerariesを日付でグループ分けする
     @itineraries = @plan.itineraries.order(:date).group_by { |itinerary| itinerary.date.strftime("%m/%d")}
-    binding.pry
     @unique_date = @itineraries.keys.group_by {|date| date}.sort
     @comment = Comment.new
     @comments = @plan.comments.includes(:user)
