@@ -95,9 +95,9 @@
 
               <% total_index = 0%>
               <!-- タブのコンテンツ-->
-              <% @itineraries.each do |date, itineraries| %>
+              <% @itineraries.keys.sort.each do |date| %>
                 <ul data-tab-target="card" id="<%= date %>">
-                  <% itineraries.each do |itinerary| %>
+                  <% @itineraries[date].each do |itinerary| %>
                   <% total_index += 1 %>
                     <li class="mt-4">
                       <div class="p-4 mb-4 w-full border border-solid border-gray-200 rounded-xl indicator">
@@ -110,7 +110,7 @@
                       </div>
                       <div class="flex items-center">
                       <!--その日の最後の予定の場合は移動アイコンを表示させない-->
-                      <% unless itinerary == itineraries.last %>
+                      <% unless itinerary == @itineraries[date].last %>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m0 0l6.75-6.75M12 19.5l-6.75-6.75" />
                         </svg>
