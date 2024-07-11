@@ -3,8 +3,6 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    # binding.pry
-
     hotel_likes = @user.hotel_likes
     @hotel_list = fetch_hotels(hotel_likes)
   end
