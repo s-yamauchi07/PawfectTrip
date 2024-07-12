@@ -65,7 +65,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def pet_params
-    params.require(:pet).permit(:name, :breed, :size_id, :birthday)
+    params.require(:pet).permit(:name, :breed, :size_id)
   end
 
   def ensure_normal_user
