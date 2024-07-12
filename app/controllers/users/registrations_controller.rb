@@ -42,9 +42,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create_pet
     @user = User.new(session["devise.regist_data"]["user"])
     @pet = Pet.new(pet_params)
-    Rails.logger.error "リクエストあり: #{@pet.errors.full_messages.join(", ")}"
       unless @pet.valid?
-        Rails.logger.error "Pet validation errors: #{@pet.errors.full_messages.join(", ")}"
         render :new_pet, status: :unprocessable_entity and return
       end
     @user.pets.build(@pet.attributes)
