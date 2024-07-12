@@ -38,7 +38,6 @@ RSpec.describe "ユーザー新規登録", type: :system do
       fill_in 'pet_name', with: @pet.name
       fill_in 'pet_breed', with: @pet.breed
       choose "pet_size_id_1"
-      fill_in 'pet_birthday', with: @pet.birthday
       
       # サインアップボタンをクリックすると、トップページに遷移する
       click_button("Sign up")
@@ -103,7 +102,6 @@ RSpec.describe "ユーザー新規登録", type: :system do
       # ペット情報を入力する
       fill_in 'pet_name', with: ""
       fill_in 'pet_breed', with: ""
-      fill_in 'pet_birthday', with: ""
       
       # サインアップボタンをクリックすると、ペット登録ページに遷移する
       click_button("Sign up")
@@ -249,7 +247,6 @@ RSpec.describe "ユーザー編集", type: :system do
       fill_in 'pet_name', with: @pet.name + "編集"
       fill_in 'pet_breed', with: @pet.breed + "編集"
       choose "pet_size_id_2"
-      fill_in 'pet_birthday', with: @pet.birthday
       
       # アップデートボタンをクリックする
       click_button("update")

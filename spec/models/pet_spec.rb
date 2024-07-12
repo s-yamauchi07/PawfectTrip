@@ -53,11 +53,6 @@ RSpec.describe Pet, type: :model do
         @pet.valid?
         expect(@pet.errors.full_messages).to include("サイズを選択してください")
       end
-      it 'birthdayが空の場合' do
-        @pet.birthday = ''
-        @pet.valid?
-        expect(@pet.errors.full_messages).to include("誕生日を入力してください")
-      end
     end
   end
 end

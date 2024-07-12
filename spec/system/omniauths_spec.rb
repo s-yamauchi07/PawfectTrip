@@ -35,7 +35,6 @@ RSpec.describe "Omniauths", type: :system do
       fill_in 'pet_name', with: @pet.name
       fill_in 'pet_breed', with: @pet.breed
       choose "pet_size_id_1"
-      fill_in 'pet_birthday', with: @pet.birthday
 
       # サインアップボタンをクリックすると、トップページに遷移する
       click_button("Sign up")
