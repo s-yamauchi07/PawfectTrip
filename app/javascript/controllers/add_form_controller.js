@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = [ "output", "name", "breed", "size", "birthday" ]
+  static targets = [ "output", "name", "breed", "size"]
 
   
   async addForm() {
@@ -11,8 +11,6 @@ export default class extends Controller {
       this.nameTarget.innerHTML,
       this.breedTarget.innerHTML,
       this.sizeTarget.innerHTML,
-      console.log(this.sizeTarget),
-      this.birthdayTarget.innerHTML
     ];
 
     fields.forEach(field => {

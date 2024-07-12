@@ -81,7 +81,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_14_032152) do
     t.string "name", null: false
     t.string "breed", null: false
     t.integer "size_id", null: false
-    t.date "birthday", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
