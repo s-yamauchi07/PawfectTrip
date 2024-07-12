@@ -45,7 +45,6 @@ Things you may want to cover:
 |name                  |string      |null: false                    |
 |breed                 |string      |null: false                    |
 |size_id               |integer     |null: false                    |
-|birthday              |date        |                               |
 |user                  |references  |null: false, foreign_key:true  |
 
 ### Association
