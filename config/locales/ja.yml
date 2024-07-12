@@ -12,7 +12,6 @@ ja:
       pet:
         name: お名前
         breed: 犬種
-        birthday: 誕生日
         size_id: サイズ
       plan:
         title: タイトル
