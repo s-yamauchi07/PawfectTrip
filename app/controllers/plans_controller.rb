@@ -2,6 +2,7 @@ class PlansController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
   before_action :check_user, only: [:edit, :update, :destroy]
+  before_action :import_apikey, only: [:new,:show]
 
   def index
     @plans = Plan.page(params[:page]).per(8).order("created_at DESC")
@@ -76,5 +77,9 @@ class PlansController < ApplicationController
     if current_user != @plan.user
       redirect_to root_path
     end
+  end
+
+  def import_apikey
+    gon.MAPID = ENV['MAPID']
   end
 end

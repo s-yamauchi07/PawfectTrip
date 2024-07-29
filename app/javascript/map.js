@@ -10,6 +10,7 @@ async function initMap() {
   if(!mapContent) return null;
   
   const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
   const spots = gon.spots;
   const hotel = gon.hotel;
   
@@ -21,9 +22,10 @@ async function initMap() {
 
   map = new Map(document.getElementById("map"), {
     center: tokyoStation,
-    zoom: 8
+    zoom: 8,
+    mapId: gon.MAPID
   });
-
+  
   if (spots != null) {
     for(let i = 0; i < spots.length; i++) {
       let latlng = {
@@ -34,14 +36,15 @@ async function initMap() {
       geocoder.geocode({ 'location': latlng }, function(results, status){
         if (status == 'OK') {
           map.setCenter(results[0].geometry.location);
-          marker[i] = new google.maps.Marker({
+
+          marker[i] = new google.maps.marker.AdvancedMarkerElement({
             map: map,
             position: results[0].geometry.location,
-            label: `${i + 1}`
+            title: `${i + 1}`
           })
-
           let address = results[0].formatted_address.split('、')
           infoWindow[i] = new google.maps.InfoWindow({
+            HeaderDisabled: true,
             content: `
                     <h1>${gon.spots[i].place}</h1>
                     <p>
