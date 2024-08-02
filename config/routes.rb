@@ -32,5 +32,7 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
+
+  resources :guides, only: [:index]
   
 end
