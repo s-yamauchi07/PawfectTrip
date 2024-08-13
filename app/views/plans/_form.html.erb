@@ -1,5 +1,5 @@
 <div class="flex justify-center items-center">
-  <%= form_with(model:plan, local:true, class:"artboard artboard-horizontal phone-1") do |f| %>
+  <%= form_with(model:plan, local:true, class:"w-full md:artboard artboard-horizontal phone-1") do |f| %>
     <%= turbo_frame_tag plan do %>
       <%= render "shared/error_messages", resource: f.object %>
 
