@@ -21,10 +21,13 @@ class User < ApplicationRecord
   validates :password, format: {with: VALID_PASSWORD_REGEX, message: "は半角英数字混合で入力してください"}, on: :create
 
   def self.guest
-    find_or_create_by!(email: 'guest@example.com') do |user|
+    user = find_or_create_by!(email: 'guest@example.com') do |user|
       user.nickname = 'GUEST'
-      user.password = SecureRandom.urlsafe_base64
+      user.password = SecureRandom.alphanumeric(10)
     end
+    Pet.find_or_create_by(name:"GUESTPET", breed:"柴犬", size_id:2, user_id:user.id);
+    # ログインする際に使用するusre情報を戻り値として設定
+    user
   end
 
   def active_for_authentication?
