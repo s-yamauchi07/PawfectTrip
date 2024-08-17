@@ -1,12 +1,12 @@
 <% include_gon %>
 <section class="text-gray-600 body-font overflow-hidden">
-  <div class="container px-5 py-24 mx-auto">
+  <div class="container px-5 py-12 lg:py-24 mx-auto">
   <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">宿詳細</h2>
     <div class="lg:w-4/5 mx-auto flex flex-wrap">
       <img alt="hotel_image" class="lg:w-1/2 w-full h-72 object-fill object-center rounded" src="<%= @hotel_info["hotelImageUrl"] %>">
       <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-        <h2 class="text-sm title-font text-gray-500 tracking-widest"><%= @hotel_info["hotelKanaName"]%></h2>
-        <h1 class="text-gray-900 text-3xl title-font font-medium mb-1"><%= @hotel_info["hotelName"] %></h1>
+        <h2 class="text-xs md:text-sm title-font text-gray-500 tracking-widest"><%= @hotel_info["hotelKanaName"]%></h2>
+        <h1 class="text-gray-900 text-xl md:text-3xl title-font font-medium mb-1"><%= @hotel_info["hotelName"] %></h1>
         <div class="flex mb-4">
           <span class="flex items-center">
             <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24">
@@ -19,7 +19,7 @@
 
         <p class="leading-relaxed mb-4"><%= @hotel_info["hotelSpecial"]%></p>
         
-        <span class="title-font font-medium text-2xl text-gray-900">最安値 ¥<%= @hotel_info["hotelMinCharge"]%>/人</span>
+        <p class="mb-2 md:mb-4 title-font font-medium text-xl md:text-2xl text-gray-900 text-right">最安値 ¥<%= @hotel_info["hotelMinCharge"]%>/人</p>
         <div class="flex justify-end">
           <% if user_signed_in? %>
             <!--いいねボタン-->
@@ -41,7 +41,7 @@
 
 <!--  レビューエリア -->
 <section>
-  <div class="container px-5 py-24 mx-auto text-center flex flex-col items-center">
+  <div class="container px-5 py-12 lg:py-24 mx-auto text-center flex flex-col items-center">
     <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">カスタマーレビュー</h2>
     <div class="stats shadow w-full flex flex-col lg:flex-row lg:w-4/5">
       <div class="stat w-full lg:w-1/6 p-2">
@@ -110,10 +110,10 @@
 
 <!-- 詳細エリア-->
 <section>
-  <div class="container px-5 py-24 mx-auto text-gray-600 body-font relative">
+  <div class="container px-5 py-12 lg:py-24 mx-auto text-gray-600 body-font relative">
 
     <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">住所</h2>
-    <div class="container px-5 mx-auto flex sm:flex-nowrap flex-wrap lg:w-4/5">
+    <div class="container mx-auto flex sm:flex-nowrap flex-wrap lg:w-4/5">
       <div class="bg-white relative py-6 rounded shadow-md lg:w-1/2">
         <div class="lg:w-full px-6">
           <h2 class="title-font font-semibold text-gray-900 tracking-widest text-xs">ADDRESS</h2>
