@@ -8,7 +8,7 @@ class User < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :size
 
-  has_many :pets
+  has_one :pet
   has_many :hotel_likes
   has_many :plan_likes
   has_many :plans, dependent: :destroy
