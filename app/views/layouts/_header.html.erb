@@ -1,20 +1,20 @@
-<header class="navbar bg-base-200 flex flex-col lg:flex-row justify-between items-center p-4">
+<header class="navbar bg-base-200 flex flex-col md:flex-row justify-between items-center lg:p-4">
   <!-- ヘッダー左側-->
-  <div class="flex">
-    <div class="mr-6">
-      <%= link_to image_tag("header-logo.png", class:"h-20"), root_path%>
+  <div class="flex justify-between w-full md:justify-start">
+    <div class="lg:mr-6">
+      <%= link_to image_tag("header-logo.png", class:"h-16 lg:h-20"), root_path%>
     </div>
-    <%= search_form_for Plan.ransack(params[:q]), url: search_plans_path, class:"flex items-center w-96" do |f| %>
+    <%= search_form_for Plan.ransack(params[:q]), url: search_plans_path, class:"flex items-center w-60 md:w-96" do |f| %>
       <%= f.collection_select(:destination_id_eq, Prefecture.all, :id, :name,{ include_blank: '行き先から探す' }, {class:"input input-bordered w-full"}) %>
       <div class="actions text-center ml-2">
-        <%= f.submit "日程検索", class:"btn btn-primary" %>
+        <%= f.submit "検索", class:"btn btn-primary" %>
       </div>
     <% end %>
   </div>
 
   <!-- ヘッダー右側-->
-  <div class="rignt-header">
-    <ul class="w-40 flex justify-between mr-4">
+  <div class="w-full flex justify-center md:justify-end">
+    <ul class="w-40 flex justify-between mr-10 md:mr-4">
       <li class="flex flex-col items-center">
         <%= link_to new_plan_path, class: "flex flex-col items-center" do %>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

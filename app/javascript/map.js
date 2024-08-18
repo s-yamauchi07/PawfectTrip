@@ -10,7 +10,7 @@ async function initMap() {
   if(!mapContent) return null;
   
   const { Map } = await google.maps.importLibrary("maps");
-  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+  const { AdvancedMarkerElement,PinElement } = await google.maps.importLibrary("marker");
   const spots = gon.spots;
   const hotel = gon.hotel;
   
@@ -37,11 +37,17 @@ async function initMap() {
         if (status == 'OK') {
           map.setCenter(results[0].geometry.location);
 
+          const pin = new PinElement({
+            glyph: `${i + 1}`,
+            scale: 1.0,
+          });
+
           marker[i] = new google.maps.marker.AdvancedMarkerElement({
             map: map,
             position: results[0].geometry.location,
-            title: `${i + 1}`
-          })
+            content: pin.element,
+          });
+
           let address = results[0].formatted_address.split('、')
           infoWindow[i] = new google.maps.InfoWindow({
             HeaderDisabled: true,

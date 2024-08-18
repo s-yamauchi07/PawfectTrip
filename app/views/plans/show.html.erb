@@ -13,18 +13,18 @@
             <%= render partial: "likes/like", locals: {plan: @plan} %>
           </div>
 
-          <div class="md:pt-8">
-            <div class="flex items-center">
-              <p class="text-center font-bold text-blue-500 md:text-left mr-4"><%= link_to "#{@plan.user.nickname}'s trip plan", user_path(@plan.user.id) %></p>
+          <div>
+            <div class="flex justify-between">
+              <p class="text-center font-bold text-cyan-600 md:text-left mr-4"><%= link_to "#{@plan.user.nickname}'s trip plan", user_path(@plan.user.id) %></p>
               <div class="flex justify-center">
                 <% if current_user == @plan.user%>
-                  <button class="delete-btn rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-2 hover:bg-blue-500 hover:text-gray-100" onclick="my_modal_1.showModal()">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <button class="delete-btn rounded-full w-8 h-8 sm:w-10 sm:h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-2 hover:bg-cyan-500 hover:text-gray-100" onclick="my_modal_1.showModal()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 sm:w-6 sm:h-6">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />   
                     </svg>
                   </button>
-                  <%= link_to(edit_plan_path, id:"edit-btn", class:"rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-2 hover:bg-blue-500 hover:text-gray-100") do %>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <%= link_to(edit_plan_path, id:"edit-btn", class:"rounded-full w-8 h-8 sm:w-10 sm:h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-2 hover:bg-cyan-500 hover:text-gray-100") do %>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 sm:w-6 sm:h-6">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                     </svg>
                   <% end %>
@@ -45,11 +45,11 @@
                 <% end %>
               </div>
             </div>
-            <h1 class="mb-4 text-center text-2xl font-bold text-gray-800 sm:text-3xl md:mb-6 md:text-left"><%= @plan.title%></h1>
+            <h1 class="mt-4 md:mb-4 mt-0 text-center text-2xl font-bold text-gray-800 sm:text-3xl md:mb-6 md:text-left"><%= @plan.title%></h1>
 
             <div class="mb-6 text-gray-500 sm:text-lg md:mb-8">
               <div class="flex mb-4">
-                <a class="flex-grow text-blue-500 border-b-2 border-blue-500 py-2 text-lg px-1">日程詳細</a>
+                <a class="flex-grow text-cyan-600 border-b-2 border-cya-500 py-2 text-lg px-1">日程詳細</a>
               </div>
               <div class="flex border-gray-200 py-2">
                 <span class="text-gray-500">旅行日程</span>
@@ -72,18 +72,17 @@
                 <span class="ml-auto text-gray-900"><%= Pet.find_by(user_id: @plan.user.id).name %></span>
               </div>
             </div>
-          </div>
         </div>
       </div>
     </div>
 
     <div class="divider mx-4"></div> 
 
-    <div class="container px-5 py-24 mx-auto">
+    <div class="container px-5 lg:py-24 mx-auto">
       <!-- 日程のコンテンツ -->
       <% if @plan.itineraries.present? %>
-        <div class="flex justify-center items-center">
-          <div class="w-1/2 px-5 py-24 mx-auto">
+        <div class="lg:flex justify-center items-center">
+          <div class="w-full px-0 pb-12 lg:w-1/2 lg:px-5 lg:pb-24 mx-auto">
             <div data-controller="tab" data-tab-default-tab-value="<%= @itineraries.keys.min if @itineraries.present? %>">
               <!-- タブ名-->
               <ul class="tab-list tabs tabs-boxed">
@@ -124,7 +123,20 @@
               <!-- タブのコンテンツ-->
             </div>
           </div>
-          <div id="map" class="w-96 h-96">
+          <div id="map" class="w-full lg:w-full h-96">
+          </div>
+        </div>
+      <% else %>  
+        <div class="space-y-8 lg:divide-y lg:divide-gray-100">
+          <div class="mt-6 flex flex-col items-center group">
+            <div class="flex-shrink-0 mb-4 sm:mb-0 sm:mr-4">
+              <%= image_tag 'no_registration.png', class:"w-full rounded-md object-cover"%>
+            </div>
+            <div>
+              <p class="mt-3 text-center text-lg font-medium leading-6">
+                  旅行日程は登録されていません。
+              </p>
+            </div>
           </div>
         </div>
       <% end %>
