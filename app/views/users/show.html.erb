@@ -7,10 +7,7 @@
       <%= @user.nickname %>
     </p>
     <p class="text-xl font-light text-gray-500 dark:text-gray-200">
-      Dog'name: 
-      <% @user.pet.each do |pet| %>
-        <%= pet.name %>
-      <% end %>
+      Dog'name: <%= @user.pet.name %>
     </p>
     <% if current_user == @user %>
       <div>
